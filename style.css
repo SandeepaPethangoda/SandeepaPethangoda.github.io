@@ -15,8 +15,8 @@ body {
 
 .hero-section {
     background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-secondary) 100%);
-    min-height: 100vh;
-    padding-top: 80px;
+    min-height: 80vh;
+    padding-top: 2px;
     position: relative;
     overflow: hidden;
 }
@@ -104,7 +104,7 @@ body {
 .project-card {
     position: relative;
     overflow: hidden;
-    height: 60vh;
+    height: 45vh;
     object-fit: cover;
     
     /* width: min(100%, 300px); */
@@ -120,6 +120,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -194,7 +195,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/api/placeholder/1200/800');
+    background-image: url('https://i.ibb.co/tw3cxQPb/2497968-13416.jpg');
     background-size: cover;
     opacity: 0.1;
     z-index: 0;
