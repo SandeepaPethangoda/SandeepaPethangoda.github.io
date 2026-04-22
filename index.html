@@ -236,7 +236,7 @@
 
   /* ── SKILLS ── */
   #skills { padding: 8rem 0; background: rgba(26,16,60,0.3); }
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
   .skill-card {
     background: var(--card-bg); border: 1px solid rgba(255,0,255,0.2);
     border-top: 2px solid var(--cyan); padding: 1.75rem;
@@ -252,15 +252,27 @@
   .skill-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,255,255,0.15); }
   .skill-card:hover::before { opacity: 1; }
   .skill-icon-wrap {
-    width: 50px; height: 50px;
+    width: 54px; height: 54px;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid var(--magenta);
-    margin-bottom: 1rem; font-size: 1.5rem;
+    margin-bottom: 1rem;
     transform: rotate(45deg);
     box-shadow: 0 0 15px rgba(255,0,255,0.3);
     transition: transform .2s;
+    overflow: hidden;
+    background: rgba(255,0,255,0.05);
+    flex-shrink: 0;
   }
-  .skill-icon-wrap span { transform: rotate(-45deg); display: block; }
+  .skill-icon-wrap span {
+    transform: rotate(-45deg);
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+  }
+  .skill-icon-wrap span img {
+    width: 28px; height: 28px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(0,255,255,0.6));
+  }
   .skill-card:hover .skill-icon-wrap { transform: rotate(90deg); }
   .skill-name { font-family: var(--font-head); font-size: .9rem; font-weight: 700; color: var(--cyan); margin-bottom: .5rem; letter-spacing: .1em; }
   .skill-desc { font-size: .8rem; opacity: .6; line-height: 1.6; margin-bottom: 1rem; }
@@ -392,6 +404,162 @@
   .form-submit span { transform: skewX(8deg); display: flex; gap: .5rem; align-items: center; }
   .form-submit:hover { background: var(--cyan); color: #000; box-shadow: 0 0 30px var(--cyan); transform: skewX(0); }
 
+  /* ── CERTIFICATIONS ── */
+  #certifications { padding: 8rem 0; }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .cert-card {
+    background: var(--card-bg); border: 1px solid var(--border-dark);
+    border-top: 2px solid var(--orange);
+    padding: 1.75rem; backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .cert-card::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(255,153,0,0.1), transparent 70%);
+  }
+  .cert-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(255,153,0,0.15); }
+  .cert-issuer {
+    font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: .6rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .cert-issuer::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
+  .cert-name {
+    font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+    color: #fff; margin-bottom: .4rem; line-height: 1.3;
+  }
+  .cert-sub { font-size: .8rem; color: var(--fg); opacity: .55; margin-bottom: 1.25rem; line-height: 1.6; }
+  .cert-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  .cert-year {
+    font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--cyan); border: 1px solid rgba(0,255,255,0.3);
+    padding: .25rem .6rem; background: rgba(0,255,255,0.05);
+  }
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--orange); border: 1px solid rgba(255,153,0,0.4);
+    padding: .25rem .6rem; background: rgba(255,153,0,0.06);
+    transform: skewX(-4deg);
+  }
+  .cert-verify {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--magenta); text-decoration: none; margin-top: .75rem;
+    transition: color .2s, text-shadow .2s; border: none; background: none; cursor: pointer;
+  }
+  .cert-verify:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+  .cert-harvard-logo {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #A51C30, #6B0F1A);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: .7rem; font-weight: 900;
+    color: #fff; letter-spacing: 0; flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(165,28,48,0.5);
+  }
+  .cert-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: .75rem; }
+
+  .logo-img-wrap {
+    width: 42px; height: 42px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    overflow: hidden; padding: 4px;
+  }
+  .logo-img-wrap img {
+    width: 100%; height: 100%; object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .logo-img-wrap.color img { filter: none; }
+  .edu-logo-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 3px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+  }
+  .edu-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+  .edu-header { display: flex; align-items: center; gap: .85rem; margin-bottom: .75rem; }
+  .exp-logo-wrap {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px; overflow: hidden; padding: 3px;
+  }
+  .exp-logo-wrap img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+  .exp-logo-wrap.color img { filter: none; }
+  .exp-company-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .4rem; }
+
+  /* ── EDUCATION ── */
+  #education { padding: 8rem 0; background: rgba(26,16,60,0.3); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--card-bg); border: 1px solid var(--border-dark);
+    border-left: 3px solid var(--cyan);
+    padding: 1.75rem; backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,255,255,0.12); }
+  .edu-card.upcoming { border-left-color: var(--orange); }
+  .edu-card.upcoming:hover { box-shadow: 0 0 30px rgba(255,153,0,0.12); }
+  .edu-status {
+    display: inline-block; font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+    padding: .2rem .55rem; margin-bottom: .9rem;
+  }
+  .edu-status.completed { border: 1px solid rgba(0,255,255,0.4); color: var(--cyan); background: rgba(0,255,255,0.06); }
+  .edu-status.upcoming-tag { border: 1px solid rgba(255,153,0,0.4); color: var(--orange); background: rgba(255,153,0,0.06); }
+  .edu-degree { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .35rem; line-height: 1.35; }
+  .edu-field { font-size: .8rem; color: var(--cyan); margin-bottom: .6rem; letter-spacing: .05em; }
+  .edu-card.upcoming .edu-field { color: var(--orange); }
+  .edu-institution { font-size: .78rem; color: var(--fg); opacity: .55; margin-bottom: .9rem; line-height: 1.5; }
+  .edu-year { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fg); opacity: .35; }
+  .edu-icon {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    font-size: 1.8rem; opacity: .08;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { padding: 8rem 0; }
+  .exp-list { display: flex; flex-direction: column; gap: 1px; background: var(--border-dark); max-width: 900px; margin: 0 auto; }
+  .exp-item {
+    background: var(--card-bg); padding: 2rem 2rem 2rem 1.75rem;
+    border-left: 3px solid transparent;
+    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+    backdrop-filter: blur(10px);
+    transition: border-color .2s, box-shadow .2s;
+    position: relative;
+  }
+  .exp-item:hover { border-left-color: var(--magenta); box-shadow: inset 4px 0 0 var(--magenta), 0 0 20px rgba(255,0,255,0.07); }
+  .exp-icon-col { display: flex; flex-direction: column; align-items: center; padding-top: .2rem; }
+  .exp-dot {
+    width: 12px; height: 12px; border: 2px solid var(--magenta); background: var(--bg);
+    transform: rotate(45deg); flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255,0,255,0.4);
+  }
+  .exp-line { width: 1px; flex: 1; background: linear-gradient(to bottom, var(--magenta), transparent); margin-top: .5rem; min-height: 30px; }
+  .exp-item:last-child .exp-line { display: none; }
+  .exp-role { font-family: var(--font-head); font-size: .95rem; font-weight: 700; color: var(--cyan); margin-bottom: .25rem; letter-spacing: .05em; }
+  .exp-company { font-size: .85rem; color: var(--fg); opacity: .7; margin-bottom: .4rem; }
+  .exp-company strong { color: var(--fg); opacity: 1; }
+  .exp-duration {
+    display: inline-block; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--magenta); border: 1px solid rgba(255,0,255,0.3);
+    padding: .2rem .5rem; background: rgba(255,0,255,0.05); margin-bottom: .7rem;
+  }
+  .exp-desc { font-size: .8rem; color: var(--fg); opacity: .55; line-height: 1.7; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; }
+  .exp-tag {
+    font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .2rem .45rem; border: 1px solid rgba(0,255,255,0.25);
+    color: var(--cyan); background: rgba(0,255,255,0.04);
+  }
+
   /* ── FOOTER ── */
   footer {
     position: relative; z-index: 10;
@@ -508,6 +676,9 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#competitions">Competitions</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" aria-label="Menu">☰</button>
@@ -521,10 +692,10 @@
       <h1 class="hero-title">
         <span class="line1 glitch" data-text="SANDEEPA">SANDEEPA</span>
         <span class="line2">PETHANGODA</span>
-        <span class="line3">// SOFTWARE · IoT · ROBOTICS</span>
+        <span class="line3">// CEO · ENGINEER · BUILDER</span>
       </h1>
       <p class="hero-desc">
-        Backend engineer & robotic enthusiast. Building automated solutions from embedded hardware to cloud systems — from ESP32 PCBs to Laravel platforms.
+        Software engineer, IoT architect & founder of AURON LABS. BSc from BCU · BET in Instrumentation & Automation at University of Colombo. 3+ years freelancing, Upwork-verified, and currently driving industry automation at City Cycle Industries.
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn btn-primary"><span>View Projects</span></a>
@@ -555,9 +726,9 @@
     </div>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>Innovative and detail-oriented engineer with hands-on experience in 10+ software and IoT projects, ranging from automation systems to real-time tracking and battlefield robotics.</p>
-        <p>Skilled in Java, PHP, and embedded systems — C++, Arduino, Raspberry Pi — with a strong passion for hardware-software integration and IoT architecture.</p>
-        <p>Developed standalone applications and AI-powered solutions, contributing to 30% improvements in process efficiency. Currently enrolled in a Mechatronics BET program.</p>
+        <p>Software engineer, IoT systems architect and founder of <strong style="color:var(--cyan)">AURON LABS</strong> — a tech startup focused on automation and embedded solutions. Currently serving as IT Executive at City Cycle Industries, Panadura.</p>
+        <p>Holds a <strong style="color:var(--fg)">BSc in Software Engineering from Birmingham City University (BCU)</strong> and is pursuing a <strong style="color:var(--fg)">BET Honours in Instrumentation & Automation</strong> at the Faculty of Technology, University of Colombo.</p>
+        <p>3+ years of freelancing with 1 year on Upwork — building everything from embedded IoT systems to full-stack web platforms across clients worldwide.</p>
         <p>President of the Leo Club of Colombo Grand Circle — organized 5+ tech & educational events impacting 500+ students across Sri Lanka.</p>
         <div class="social-links">
           <a href="https://sandeepapethangoda.github.io" class="social-link" title="GitHub">⌥</a>
@@ -571,12 +742,12 @@
           <div class="stat-label">Projects Shipped</div>
         </div>
         <div class="stat-box">
-          <span class="stat-num">3</span>
-          <div class="stat-label">Competition Wins</div>
+          <span class="stat-num">3+</span>
+          <div class="stat-label">Years Freelancing</div>
         </div>
         <div class="stat-box">
-          <span class="stat-num">2+</span>
-          <div class="stat-label">Years Experience</div>
+          <span class="stat-num">2</span>
+          <div class="stat-label">Degrees</div>
         </div>
         <div class="stat-box">
           <span class="stat-num">8+</span>
@@ -597,48 +768,127 @@
       <h2 class="section-title">Tech <span class="accent">Stack</span></h2>
     </div>
     <div class="skills-grid">
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>⚡</span></div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg" alt="Arduino"></span>
+        </div>
         <div class="skill-name">Arduino / C++</div>
         <div class="skill-desc">Expert in designing and programming custom Arduino-based solutions for robotics and IoT applications.</div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="95"></div></div>
         <div class="skill-pct">95%</div>
       </div>
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>🥧</span></div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi"></span>
+        </div>
         <div class="skill-name">Raspberry Pi</div>
         <div class="skill-desc">Proficient in Raspberry Pi for advanced projects requiring OS-level functionality, LoRa, and MQTT.</div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="70"></div></div>
         <div class="skill-pct">70%</div>
       </div>
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>🐍</span></div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></span>
+        </div>
         <div class="skill-name">Python</div>
         <div class="skill-desc">Skilled in Python for data processing, battery monitoring tools, ML, and robotic control systems.</div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="65"></div></div>
         <div class="skill-pct">65%</div>
       </div>
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>🐘</span></div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"></span>
+        </div>
         <div class="skill-name">PHP / Laravel</div>
         <div class="skill-desc">Experienced in PHP and Laravel for web interfaces, backend systems, and full-stack platforms.</div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div>
         <div class="skill-pct">85%</div>
       </div>
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>☕</span></div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java"></span>
+        </div>
         <div class="skill-name">Java OOP</div>
         <div class="skill-desc">Proficient in Java object-oriented programming for robust standalone applications with barcode and reporting.</div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div>
         <div class="skill-pct">80%</div>
       </div>
+
       <div class="skill-card reveal">
-        <div class="skill-icon-wrap"><span>🤖</span></div>
-        <div class="skill-name">Robotics Design</div>
-        <div class="skill-desc">Skilled in designing and building custom robots including battlebots, smart gloves, and IoT-connected devices.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="95"></div></div>
-        <div class="skill-pct">95%</div>
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++"></span>
+        </div>
+        <div class="skill-name">C / C++</div>
+        <div class="skill-desc">Core language for embedded systems, microcontroller firmware, and high-performance robotics control loops.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div>
+        <div class="skill-pct">88%</div>
       </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel"></span>
+        </div>
+        <div class="skill-name">Laravel</div>
+        <div class="skill-desc">Full-stack web applications including micasa.lk and YourTutor — REST APIs, WebSockets, and Eloquent ORM.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div>
+        <div class="skill-pct">82%</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></span>
+        </div>
+        <div class="skill-name">React</div>
+        <div class="skill-desc">Building interactive UIs — real-time bus tracking dashboards and frontend tooling with WebSockets.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="60"></div></div>
+        <div class="skill-pct">60%</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"></span>
+        </div>
+        <div class="skill-name">MySQL / SQL</div>
+        <div class="skill-desc">Relational database design, query optimisation, and integration across PHP, Laravel, and Java projects.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div>
+        <div class="skill-pct">80%</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></span>
+        </div>
+        <div class="skill-name">Git</div>
+        <div class="skill-desc">Version control, branching strategies, and collaborative development workflows across all projects.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="75"></div></div>
+        <div class="skill-pct">75%</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"></span>
+        </div>
+        <div class="skill-name">Linux</div>
+        <div class="skill-desc">Server administration, Apache/Nginx/MySQL stacks, AWS VPS setup, and embedded Linux on Raspberry Pi.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="72"></div></div>
+        <div class="skill-pct">72%</div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">
+          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></span>
+        </div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-desc">Frontend interactivity, MQTT dashboards, real-time WebSocket clients, and IoT browser interfaces.</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="70"></div></div>
+        <div class="skill-pct">70%</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -761,6 +1011,192 @@
 
 <div class="divider"></div>
 
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Academic Record</div>
+      <h2 class="section-title">Edu<span class="accent">cation</span></h2>
+    </div>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <span class="edu-status completed">✓ COMPLETED</span>
+        <div class="edu-header">
+          <div class="edu-logo-wrap">
+            <img src="https://logowik.com/content/uploads/images/bcu-birmingham-city-university1638.jpg" alt="BCU logo" onerror="this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:.8rem;font-weight:900;color:#003DA5\'>BCU</span>'">
+          </div>
+          <div>
+            <div class="edu-degree">BSc Software Engineering</div>
+            <div class="edu-field">Bachelor of Science — Software Engineering</div>
+          </div>
+        </div>
+        <div class="edu-institution">Birmingham City University (BCU)<br>United Kingdom</div>
+        <div class="edu-year">Undergraduate · BCU</div>
+      </div>
+
+      <div class="edu-card upcoming reveal">
+        <span class="edu-status upcoming-tag">◉ UPCOMING</span>
+        <div class="edu-header">
+          <div class="edu-logo-wrap" style="background:rgba(255,255,255,0.08)">
+            <img src="https://cmb.ac.lk/wp-content/uploads/logo-web.png" alt="University of Colombo logo" onerror="this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:.7rem;font-weight:900;color:#6B2D8B\'>UoC</span>'">
+          </div>
+          <div>
+            <div class="edu-degree">BET Honours — Instrumentation &amp; Automation</div>
+            <div class="edu-field">Bachelor of Engineering Technology (Honours)</div>
+          </div>
+        </div>
+        <div class="edu-institution">Faculty of Technology<br>University of Colombo, Sri Lanka</div>
+        <div class="edu-year">Mechatronics Stream · UoC</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Professional Log</div>
+      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-role">CEO &amp; Founder</div>
+          <div class="exp-company-row">
+            <div class="exp-logo-wrap" style="background:rgba(0,255,255,0.08);border-color:rgba(0,255,255,0.2)">
+              <img src="https://img.icons8.com/fluency/48/rocket.png" alt="Auron Labs" style="filter:none">
+            </div>
+            <strong style="color:var(--fg)">AURON LABS</strong> <span style="opacity:.5;font-size:.8rem">· Tech Startup</span>
+          </div>
+          <span class="exp-duration">2024 — PRESENT</span>
+          <div class="exp-desc">Founded and leading AURON LABS, a technology startup specialising in automation, IoT systems, and embedded solutions. Driving product development, client delivery, and technical strategy.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">IoT</span><span class="exp-tag">Automation</span><span class="exp-tag">Embedded Systems</span><span class="exp-tag">Leadership</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-role">IT Executive</div>
+          <div class="exp-company-row">
+            <div class="exp-logo-wrap">
+              <img src="https://img.icons8.com/fluency/48/factory.png" alt="City Cycle Industries" style="filter:none">
+            </div>
+            <strong style="color:var(--fg)">City Cycle Industries</strong> <span style="opacity:.5;font-size:.8rem">· Panadura, Sri Lanka</span>
+          </div>
+          <span class="exp-duration">INDUSTRY ROLE</span>
+          <div class="exp-desc">Managing IT infrastructure and software systems for a manufacturing environment. Driving digitisation, system integration, and technical support across production and administrative operations.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">IT Management</span><span class="exp-tag">Manufacturing</span><span class="exp-tag">Systems Integration</span><span class="exp-tag">PHP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-role">Freelance Engineer</div>
+          <div class="exp-company-row">
+            <div class="exp-logo-wrap color" style="background:#1D4354;border-color:#14A800">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Upwork_logo.svg" alt="Upwork" style="filter:none">
+            </div>
+            <strong style="color:var(--fg)">Upwork</strong> <span style="opacity:.5;font-size:.8rem">· Global Remote</span>
+          </div>
+          <span class="exp-duration">1 YR · UPWORK</span>
+          <div class="exp-desc">Delivered software and IoT projects to international clients on Upwork — spanning backend development, Arduino systems, and automation tooling.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Upwork</span><span class="exp-tag">Remote</span><span class="exp-tag">Backend Dev</span><span class="exp-tag">Client Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+        <div>
+          <div class="exp-role">Independent Freelancer</div>
+          <div class="exp-company-row">
+            <div class="exp-logo-wrap">
+              <img src="https://img.icons8.com/fluency/48/laptop-coding.png" alt="Freelancer" style="filter:none">
+            </div>
+            <strong style="color:var(--fg)">Self-Employed</strong> <span style="opacity:.5;font-size:.8rem">· Sri Lanka &amp; Remote</span>
+          </div>
+          <span class="exp-duration">3+ YRS · FREELANCING</span>
+          <div class="exp-desc">Built 10+ software and IoT solutions independently — from hospital management systems and institute portals to real-time bus tracking apps, smart switches, and battlebots.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">PHP</span><span class="exp-tag">Java</span><span class="exp-tag">Arduino</span><span class="exp-tag">React</span><span class="exp-tag">Laravel</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CERTIFICATIONS ── -->
+<section id="certifications">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Credentials</div>
+      <h2 class="section-title">Certifi<span class="accent">cations</span></h2>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Harvard University · edX</div>
+        <div class="cert-header">
+          <div class="logo-img-wrap color" style="background:#A51C30;border-color:rgba(165,28,48,0.4);width:42px;height:42px;border-radius:50%">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg" alt="Harvard" style="filter:none;padding:2px">
+          </div>
+          <div>
+            <div class="cert-name">CS50x: Introduction to<br>Computer Science</div>
+          </div>
+        </div>
+        <div class="cert-sub">
+          Harvard's legendary introductory course covering C, Python, SQL, HTML/CSS/JS, algorithms, data structures, and software engineering fundamentals.
+        </div>
+        <div class="cert-meta">
+          <span class="cert-year">2025</span>
+          <span class="cert-badge">✓ VERIFIED</span>
+        </div>
+        <a href="https://certificates.cs50.io/262b63ef-8f23-4e47-a650-985c53bcaf22.pdf?size=letter" target="_blank" class="cert-verify">VIEW CERTIFICATE →</a>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Birmingham City University · UK</div>
+        <div class="cert-header">
+          <div class="logo-img-wrap" style="background:#fff;border-color:rgba(0,61,165,0.3);width:42px;height:42px">
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c8/Birmingham_City_University_logo.svg" alt="BCU" style="filter:none">
+          </div>
+          <div>
+            <div class="cert-name">BSc Software Engineering</div>
+          </div>
+        </div>
+        <div class="cert-sub">
+          Undergraduate degree in Software Engineering from Birmingham City University, UK — covering software architecture, systems design, algorithms, and full-stack development.
+        </div>
+        <div class="cert-meta">
+          <span class="cert-year">UG DEGREE</span>
+          <span class="cert-badge">✓ AWARDED</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="section-wrap">
@@ -842,6 +1278,9 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
     <a href="#contact">Contact</a>
   </div>
   <div class="footer-copy">© 2025 // ALL SYSTEMS OPERATIONAL</div>
