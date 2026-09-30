@@ -1,1523 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SANDEEPA PETHANGODA // ENGINEER</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #090014;
-    --fg: #E0E0E0;
-    --card-bg: rgba(26, 16, 60, 0.85);
-    --magenta: #FF00FF;
-    --cyan: #00FFFF;
-    --orange: #FF9900;
-    --border-dark: #2D1B4E;
-    --font-head: 'Orbitron', sans-serif;
-    --font-mono: 'Share Tech Mono', monospace;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandeepa Pethangoda — Backend Engineer · IoT Architect · Automation Builder</title>
+  <meta name="description" content="Sandeepa Pethangoda — Software engineer, IoT systems architect and founder of AURON LABS. BSc Software Engineering (BCU), BET Instrumentation & Automation (UoC). IT Executive at City Cycle Industries. I build systems that connect the digital and physical world." />
+  <meta name="keywords" content="Sandeepa Pethangoda, Backend Engineer, IoT Engineer, AURON LABS, City Cycle Industries, Arduino, ESP32, LoRa, MQTT, Laravel, Sri Lanka" />
+  <meta name="author" content="Sandeepa Pethangoda" />
+  <link rel="canonical" href="https://sandeepapethangoda.github.io/" />
+  <meta name="robots" content="index, follow" />
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sandeepapethangoda.github.io/" />
+  <meta property="og:title" content="Sandeepa Pethangoda — I build systems that connect the digital and physical world" />
+  <meta property="og:description" content="Backend · IoT · Automation · AI · Infrastructure. Founder of AURON LABS, IT Executive at City Cycle Industries." />
+  <meta property="og:image" content="assets/profile.jpg" />
 
-  html { scroll-behavior: smooth; }
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sandeepa Pethangoda — Engineer · Builder" />
+  <meta name="twitter:description" content="I build systems that connect the digital and physical world. Backend · IoT · Automation." />
+  <meta name="twitter:image" content="assets/profile.jpg" />
 
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-mono);
-    overflow-x: hidden;
-    cursor: none;
-  }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  /* ── CUSTOM CURSOR ── */
-  #cursor {
-    position: fixed; width: 16px; height: 16px; border: 2px solid var(--cyan);
-    border-radius: 50%; pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width .15s, height .15s, border-color .15s;
-    mix-blend-mode: difference;
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sandeepa Pethangoda",
+    "url": "https://sandeepapethangoda.github.io/",
+    "image": "assets/profile.jpg",
+    "jobTitle": "Backend Engineer, IoT Architect",
+    "worksFor": [{"@type":"Organization","name":"AURON LABS"},{"@type":"Organization","name":"City Cycle Industries"}],
+    "alumniOf": {"@type":"CollegeOrUniversity","name":"Birmingham City University"},
+    "sameAs": ["https://github.com/SandeepaPethangoda","https://www.linkedin.com/in/SandeepaPethangoda","https://www.youtube.com/@petztech"]
   }
-  #cursor-dot {
-    position: fixed; width: 4px; height: 4px;
-    background: var(--magenta); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-  }
+  </script>
 
-  /* ── SCANLINES OVERLAY ── */
-  #scanlines {
-    position: fixed; inset: 0; z-index: 9000; pointer-events: none;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent, transparent 2px,
-      rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px
-    );
-    animation: flicker 8s infinite;
-  }
-  @keyframes flicker {
-    0%,100%{opacity:1} 97%{opacity:1} 97.5%{opacity:.7} 98%{opacity:1} 98.5%{opacity:.8} 99%{opacity:1}
-  }
-
-  /* ── THREE.JS CANVAS ── */
-  #three-canvas {
-    position: fixed; inset: 0; z-index: 0;
-    pointer-events: none;
-  }
-
-  /* ── FLOATING SUN ── */
-  #sun {
-    position: fixed; z-index: 1; pointer-events: none;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,153,0,0.25) 0%, rgba(255,0,255,0.15) 50%, transparent 70%);
-    border-radius: 50%;
-    top: -200px; left: 50%; transform: translateX(-50%);
-    filter: blur(60px);
-    animation: sunPulse 6s ease-in-out infinite;
-  }
-  @keyframes sunPulse { 0%,100%{opacity:.6} 50%{opacity:1} }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 8000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 3rem;
-    background: rgba(9,0,20,0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-dark);
-  }
-  .nav-brand {
-    font-family: var(--font-head);
-    font-size: 1.2rem; font-weight: 900;
-    letter-spacing: 0.2em;
-    background: linear-gradient(90deg, var(--orange), var(--magenta), var(--cyan));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--fg); text-decoration: none; font-family: var(--font-mono);
-    font-size: .85rem; letter-spacing: .15em; text-transform: uppercase;
-    transition: color .2s, text-shadow .2s;
-  }
-  .nav-links a:hover {
-    color: var(--cyan);
-    text-shadow: 0 0 10px var(--cyan);
-  }
-  .nav-hamburger { display: none; background: none; border: none; color: var(--cyan); font-size: 1.5rem; cursor: pointer; }
-
-  /* ── SECTION BASE ── */
-  section { position: relative; z-index: 10; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 6rem 3rem 4rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-  .hero-eyebrow {
-    font-size: .85rem; letter-spacing: .4em; text-transform: uppercase;
-    color: var(--cyan); margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: .75rem;
-  }
-  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 2px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
-  .hero-title {
-    font-family: var(--font-head);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-  .hero-title .line1 { color: #fff; display: block; }
-  .hero-title .line2 {
-    display: block;
-    background: linear-gradient(90deg, var(--orange), var(--magenta), var(--cyan));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(255,0,255,0.5));
-  }
-  .hero-title .line3 { color: var(--fg); opacity: .5; display: block; font-size: .6em; letter-spacing: .1em; margin-top: .5rem; }
-  .hero-desc { color: var(--fg); opacity: .7; line-height: 1.8; margin-bottom: 2rem; max-width: 480px; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  /* ── BUTTONS ── */
-  .btn {
-    font-family: var(--font-mono); font-size: .85rem; letter-spacing: .15em; text-transform: uppercase;
-    padding: .85rem 2rem; border: 2px solid; cursor: pointer;
-    text-decoration: none; display: inline-block;
-    transition: all .2s ease-linear;
-    transform: skewX(-8deg);
-    position: relative; overflow: hidden;
-  }
-  .btn span { display: inline-block; transform: skewX(8deg); }
-  .btn-primary { border-color: var(--cyan); color: var(--cyan); background: transparent; }
-  .btn-primary:hover { background: var(--cyan); color: #000; box-shadow: 0 0 25px var(--cyan); transform: skewX(0); }
-  .btn-secondary { border-color: var(--magenta); color: var(--magenta); background: transparent; }
-  .btn-secondary:hover { background: var(--magenta); color: #fff; box-shadow: 0 0 25px var(--magenta); transform: skewX(0); }
-
-  /* ── HERO VISUAL (3D scene placeholder) ── */
-  .hero-visual {
-    position: relative; height: 400px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-avatar-ring {
-    position: relative; width: 280px; height: 280px;
-  }
-  .hero-avatar-ring::before {
-    content: ''; position: absolute; inset: -12px;
-    border: 2px solid var(--magenta);
-    box-shadow: 0 0 20px var(--magenta), inset 0 0 20px rgba(255,0,255,0.1);
-    animation: ringRotate 8s linear infinite;
-  }
-  .hero-avatar-ring::after {
-    content: ''; position: absolute; inset: -24px;
-    border: 1px solid var(--cyan);
-    box-shadow: 0 0 10px var(--cyan);
-    animation: ringRotate 12s linear infinite reverse;
-  }
-  @keyframes ringRotate { to { transform: rotate(360deg); } }
-  .hero-avatar-img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: saturate(1.3) contrast(1.1);
-  }
-  .hero-avatar-scanlines {
-    position: absolute; inset: 0; pointer-events: none;
-    background: repeating-linear-gradient(0deg, transparent 0px, transparent 3px, rgba(0,255,255,0.03) 3px, rgba(0,255,255,0.03) 4px);
-  }
-  .floating-badge {
-    position: absolute; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em;
-    padding: .4rem .8rem; border: 1px solid; text-transform: uppercase;
-    animation: float 3s ease-in-out infinite;
-  }
-  .badge-iot { border-color: var(--cyan); color: var(--cyan); top: 10%; right: -30px; background: rgba(0,255,255,0.08); animation-delay: 0s; }
-  .badge-robot { border-color: var(--magenta); color: var(--magenta); bottom: 20%; left: -40px; background: rgba(255,0,255,0.08); animation-delay: 1s; }
-  .badge-code { border-color: var(--orange); color: var(--orange); top: 50%; right: -50px; background: rgba(255,153,0,0.08); animation-delay: .5s; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-
-  /* ── SECTION HEADERS ── */
-  .section-wrap { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
-  .section-header { margin-bottom: 4rem; }
-  .section-eyebrow {
-    font-size: .75rem; letter-spacing: .5em; text-transform: uppercase;
-    color: var(--magenta); display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem;
-  }
-  .section-eyebrow::before { content: '>'; }
-  .section-title {
-    font-family: var(--font-head);
-    font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 900;
-    color: #fff;
-    text-shadow: 0 0 40px rgba(255,255,255,0.1);
-  }
-  .section-title .accent { color: var(--cyan); text-shadow: 0 0 20px var(--cyan); }
-
-  /* ── ABOUT ── */
-  #about { padding: 8rem 0; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .about-text p { line-height: 1.9; opacity: .8; margin-bottom: 1.2rem; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-dark); }
-  .stat-box {
-    background: var(--card-bg); padding: 2rem; text-align: center;
-    border-top: 2px solid transparent;
-    transition: border-color .2s;
-    backdrop-filter: blur(10px);
-  }
-  .stat-box:hover { border-top-color: var(--cyan); }
-  .stat-num {
-    font-family: var(--font-head); font-size: 3rem; font-weight: 900;
-    background: linear-gradient(135deg, var(--orange), var(--magenta));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    display: block;
-  }
-  .stat-label { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-top: .5rem; }
-
-  /* ── SKILLS ── */
-  #skills { padding: 8rem 0; background: rgba(26,16,60,0.3); }
-  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-  .skill-card {
-    background: var(--card-bg); border: 1px solid rgba(255,0,255,0.2);
-    border-top: 2px solid var(--cyan); padding: 1.75rem;
-    backdrop-filter: blur(10px);
-    transition: transform .2s, box-shadow .2s, border-color .2s;
-    position: relative; overflow: hidden;
-  }
-  .skill-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,255,255,0.03), transparent);
-    opacity: 0; transition: opacity .2s;
-  }
-  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,255,255,0.15); }
-  .skill-card:hover::before { opacity: 1; }
-  .skill-icon-wrap {
-    width: 54px; height: 54px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--magenta);
-    margin-bottom: 1rem;
-    transform: rotate(45deg);
-    box-shadow: 0 0 15px rgba(255,0,255,0.3);
-    transition: transform .2s;
-    overflow: hidden;
-    background: rgba(255,0,255,0.05);
-    flex-shrink: 0;
-  }
-  .skill-icon-wrap span {
-    transform: rotate(-45deg);
-    display: flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px;
-  }
-  .skill-icon-wrap span img {
-    width: 28px; height: 28px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 4px rgba(0,255,255,0.6));
-  }
-  .skill-card:hover .skill-icon-wrap { transform: rotate(90deg); }
-  .skill-name { font-family: var(--font-head); font-size: .9rem; font-weight: 700; color: var(--cyan); margin-bottom: .5rem; letter-spacing: .1em; }
-  .skill-desc { font-size: .8rem; opacity: .6; line-height: 1.6; margin-bottom: 1rem; }
-  .skill-bar-track { height: 2px; background: var(--border-dark); position: relative; overflow: visible; }
-  .skill-bar-fill {
-    height: 100%; background: linear-gradient(90deg, var(--magenta), var(--cyan));
-    box-shadow: 0 0 8px var(--cyan);
-    position: relative;
-    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 0;
-  }
-  .skill-bar-fill::after {
-    content: ''; position: absolute; right: -3px; top: -3px;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cyan); box-shadow: 0 0 6px var(--cyan);
-  }
-  .skill-pct { font-size: .7rem; color: var(--cyan); text-align: right; margin-top: .4rem; letter-spacing: .1em; }
-
-  /* ── PROJECTS ── */
-  #projects { padding: 8rem 0; }
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .project-card {
-    background: var(--card-bg); border: 1px solid var(--border-dark);
-    border-top: 2px solid var(--magenta); overflow: hidden;
-    position: relative; cursor: pointer;
-    transition: transform .2s, box-shadow .2s;
-    backdrop-filter: blur(10px);
-  }
-  .project-card:hover { transform: translateY(-6px); box-shadow: 0 0 40px rgba(255,0,255,0.2); }
-  .project-img { width: 100%; height: 200px; object-fit: cover; display: block; filter: saturate(0.7) contrast(1.1); transition: filter .3s; }
-  .project-card:hover .project-img { filter: saturate(1.4) contrast(1.2); }
-  .project-body { padding: 1.25rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
-  .project-tag {
-    font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
-    padding: .25rem .5rem; border: 1px solid rgba(0,255,255,0.4);
-    color: var(--cyan); background: rgba(0,255,255,0.06);
-    transform: skewX(-4deg);
-  }
-  .project-title { font-family: var(--font-head); font-size: .85rem; font-weight: 700; color: var(--fg); line-height: 1.4; margin-bottom: .5rem; }
-  .project-desc { font-size: .75rem; opacity: .55; line-height: 1.6; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--magenta); text-decoration: none;
-    margin-top: .75rem;
-    transition: color .2s, text-shadow .2s;
-  }
-  .project-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-
-  /* ── COMPETITIONS TIMELINE ── */
-  #competitions { padding: 8rem 0; background: rgba(26,16,60,0.3); }
-  .timeline { position: relative; max-width: 800px; margin: 0 auto; }
-  .timeline::before {
-    content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-    background: linear-gradient(to bottom, var(--magenta), var(--cyan));
-    box-shadow: 0 0 10px var(--cyan);
-    transform: translateX(-50%);
-  }
-  .tl-item { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; position: relative; }
-  .tl-item:nth-child(odd) .tl-content { grid-column: 1; grid-row: 1; text-align: right; }
-  .tl-item:nth-child(even) .tl-content { grid-column: 2; grid-row: 1; text-align: left; }
-  .tl-dot {
-    position: absolute; left: 50%; top: .5rem;
-    width: 14px; height: 14px;
-    border: 2px solid var(--cyan);
-    background: var(--bg);
-    transform: translate(-50%, 0) rotate(45deg);
-    box-shadow: 0 0 12px var(--cyan);
-    z-index: 2;
-  }
-  .tl-year { font-size: .7rem; letter-spacing: .3em; color: var(--orange); text-transform: uppercase; margin-bottom: .5rem; }
-  .tl-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--cyan); margin-bottom: .5rem; text-shadow: 0 0 8px rgba(0,255,255,0.5); }
-  .tl-desc { font-size: .8rem; opacity: .65; line-height: 1.6; }
-  .tl-award {
-    display: inline-block; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
-    padding: .25rem .6rem; border: 1px solid var(--orange); color: var(--orange);
-    margin-bottom: .4rem; background: rgba(255,153,0,0.08);
-  }
-
-  /* ── CONTACT ── */
-  #contact { padding: 8rem 0; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; }
-  .terminal-window {
-    border: 2px solid var(--cyan);
-    background: rgba(0,0,0,0.7);
-    box-shadow: 0 0 30px rgba(0,255,255,0.15);
-    backdrop-filter: blur(10px);
-  }
-  .terminal-bar {
-    display: flex; align-items: center; gap: .5rem;
-    padding: .6rem 1rem;
-    background: rgba(0,255,255,0.07);
-    border-bottom: 1px solid rgba(0,255,255,0.3);
-  }
-  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .terminal-dot.close { background: var(--magenta); }
-  .terminal-dot.min { background: var(--cyan); }
-  .terminal-dot.max { background: var(--orange); }
-  .terminal-title { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fg); opacity: .5; margin-left: .5rem; }
-  .terminal-body { padding: 1.5rem; }
-  .terminal-line { display: flex; gap: .75rem; margin-bottom: .75rem; font-size: .85rem; line-height: 1.6; }
-  .terminal-prompt { color: var(--magenta); flex-shrink: 0; }
-  .terminal-value { color: var(--cyan); word-break: break-all; }
-  .terminal-label { color: var(--fg); opacity: .5; flex-shrink: 0; min-width: 90px; }
-
-  .contact-form-wrap { }
-  .form-group { margin-bottom: 1.25rem; }
-  .form-label { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--magenta); margin-bottom: .4rem; display: block; }
-  .form-input {
-    width: 100%; background: transparent;
-    border: none; border-bottom: 2px solid var(--magenta);
-    color: var(--cyan); font-family: var(--font-mono); font-size: .95rem;
-    padding: .6rem 0; outline: none;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .form-input::placeholder { color: rgba(255,0,255,0.3); }
-  .form-input:focus { border-color: var(--cyan); box-shadow: 0 4px 0 -2px var(--cyan); }
-  .form-textarea { resize: none; height: 120px; line-height: 1.6; }
-  .form-submit {
-    width: 100%; padding: 1rem;
-    background: transparent; border: 2px solid var(--cyan);
-    color: var(--cyan); font-family: var(--font-mono); font-size: .85rem;
-    letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
-    transform: skewX(-8deg);
-    transition: all .2s;
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-  }
-  .form-submit span { transform: skewX(8deg); display: flex; gap: .5rem; align-items: center; }
-  .form-submit:hover { background: var(--cyan); color: #000; box-shadow: 0 0 30px var(--cyan); transform: skewX(0); }
-
-  /* ── CERTIFICATIONS ── */
-  #certifications { padding: 8rem 0; }
-  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-  .cert-card {
-    background: var(--card-bg); border: 1px solid var(--border-dark);
-    border-top: 2px solid var(--orange);
-    padding: 1.75rem; backdrop-filter: blur(10px);
-    position: relative; overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .cert-card::before {
-    content: ''; position: absolute; top: 0; right: 0;
-    width: 80px; height: 80px;
-    background: radial-gradient(circle at top right, rgba(255,153,0,0.1), transparent 70%);
-  }
-  .cert-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(255,153,0,0.15); }
-  .cert-issuer {
-    font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
-    color: var(--orange); margin-bottom: .6rem;
-    display: flex; align-items: center; gap: .5rem;
-  }
-  .cert-issuer::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
-  .cert-name {
-    font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
-    color: #fff; margin-bottom: .4rem; line-height: 1.3;
-  }
-  .cert-sub { font-size: .8rem; color: var(--fg); opacity: .55; margin-bottom: 1.25rem; line-height: 1.6; }
-  .cert-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
-  .cert-year {
-    font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--cyan); border: 1px solid rgba(0,255,255,0.3);
-    padding: .25rem .6rem; background: rgba(0,255,255,0.05);
-  }
-  .cert-badge {
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--orange); border: 1px solid rgba(255,153,0,0.4);
-    padding: .25rem .6rem; background: rgba(255,153,0,0.06);
-    transform: skewX(-4deg);
-  }
-  .cert-verify {
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--magenta); text-decoration: none; margin-top: .75rem;
-    transition: color .2s, text-shadow .2s; border: none; background: none; cursor: pointer;
-  }
-  .cert-verify:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-  .cert-harvard-logo {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, #A51C30, #6B0F1A);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-head); font-size: .7rem; font-weight: 900;
-    color: #fff; letter-spacing: 0; flex-shrink: 0;
-    box-shadow: 0 0 12px rgba(165,28,48,0.5);
-  }
-  .cert-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: .75rem; }
-
-  .logo-img-wrap {
-    width: 42px; height: 42px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
-    overflow: hidden; padding: 4px;
-  }
-  .logo-img-wrap img {
-    width: 100%; height: 100%; object-fit: contain;
-    filter: brightness(0) invert(1);
-  }
-  .logo-img-wrap.color img { filter: none; }
-  .edu-logo-wrap {
-    width: 44px; height: 44px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; padding: 3px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
-  }
-  .edu-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
-  .edu-header { display: flex; align-items: center; gap: .85rem; margin-bottom: .75rem; }
-  .exp-logo-wrap {
-    width: 36px; height: 36px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px; overflow: hidden; padding: 3px;
-  }
-  .exp-logo-wrap img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
-  .exp-logo-wrap.color img { filter: none; }
-  .exp-company-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .4rem; }
-
-  /* ── EDUCATION ── */
-  #education { padding: 8rem 0; background: rgba(26,16,60,0.3); }
-  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-  .edu-card {
-    background: var(--card-bg); border: 1px solid var(--border-dark);
-    border-left: 3px solid var(--cyan);
-    padding: 1.75rem; backdrop-filter: blur(10px);
-    position: relative; overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .edu-card:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,255,255,0.12); }
-  .edu-card.upcoming { border-left-color: var(--orange); }
-  .edu-card.upcoming:hover { box-shadow: 0 0 30px rgba(255,153,0,0.12); }
-  .edu-status {
-    display: inline-block; font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
-    padding: .2rem .55rem; margin-bottom: .9rem;
-  }
-  .edu-status.completed { border: 1px solid rgba(0,255,255,0.4); color: var(--cyan); background: rgba(0,255,255,0.06); }
-  .edu-status.upcoming-tag { border: 1px solid rgba(255,153,0,0.4); color: var(--orange); background: rgba(255,153,0,0.06); }
-  .edu-degree { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .35rem; line-height: 1.35; }
-  .edu-field { font-size: .8rem; color: var(--cyan); margin-bottom: .6rem; letter-spacing: .05em; }
-  .edu-card.upcoming .edu-field { color: var(--orange); }
-  .edu-institution { font-size: .78rem; color: var(--fg); opacity: .55; margin-bottom: .9rem; line-height: 1.5; }
-  .edu-year { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fg); opacity: .35; }
-  .edu-icon {
-    position: absolute; top: 1.25rem; right: 1.25rem;
-    font-size: 1.8rem; opacity: .08;
-  }
-
-  /* ── EXPERIENCE ── */
-  #experience { padding: 8rem 0; }
-  .exp-list { display: flex; flex-direction: column; gap: 1px; background: var(--border-dark); max-width: 900px; margin: 0 auto; }
-  .exp-item {
-    background: var(--card-bg); padding: 2rem 2rem 2rem 1.75rem;
-    border-left: 3px solid transparent;
-    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
-    backdrop-filter: blur(10px);
-    transition: border-color .2s, box-shadow .2s;
-    position: relative;
-  }
-  .exp-item:hover { border-left-color: var(--magenta); box-shadow: inset 4px 0 0 var(--magenta), 0 0 20px rgba(255,0,255,0.07); }
-  .exp-icon-col { display: flex; flex-direction: column; align-items: center; padding-top: .2rem; }
-  .exp-dot {
-    width: 12px; height: 12px; border: 2px solid var(--magenta); background: var(--bg);
-    transform: rotate(45deg); flex-shrink: 0;
-    box-shadow: 0 0 8px rgba(255,0,255,0.4);
-  }
-  .exp-line { width: 1px; flex: 1; background: linear-gradient(to bottom, var(--magenta), transparent); margin-top: .5rem; min-height: 30px; }
-  .exp-item:last-child .exp-line { display: none; }
-  .exp-role { font-family: var(--font-head); font-size: .95rem; font-weight: 700; color: var(--cyan); margin-bottom: .25rem; letter-spacing: .05em; }
-  .exp-company { font-size: .85rem; color: var(--fg); opacity: .7; margin-bottom: .4rem; }
-  .exp-company strong { color: var(--fg); opacity: 1; }
-  .exp-duration {
-    display: inline-block; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--magenta); border: 1px solid rgba(255,0,255,0.3);
-    padding: .2rem .5rem; background: rgba(255,0,255,0.05); margin-bottom: .7rem;
-  }
-  .exp-desc { font-size: .8rem; color: var(--fg); opacity: .55; line-height: 1.7; }
-  .exp-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; }
-  .exp-tag {
-    font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
-    padding: .2rem .45rem; border: 1px solid rgba(0,255,255,0.25);
-    color: var(--cyan); background: rgba(0,255,255,0.04);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 10;
-    border-top: 1px solid var(--border-dark);
-    padding: 3rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-brand { font-family: var(--font-head); font-size: .9rem; font-weight: 700; letter-spacing: .2em; }
-  .footer-brand .c { color: var(--cyan); }
-  .footer-brand .m { color: var(--magenta); }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { color: var(--fg); opacity: .4; text-decoration: none; font-size: .8rem; transition: opacity .2s, color .2s; }
-  .footer-links a:hover { opacity: 1; color: var(--cyan); }
-  .footer-copy { font-size: .75rem; opacity: .3; letter-spacing: .1em; }
-
-  /* ── SOCIAL ICONS ── */
-  .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-  .social-link {
-    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border-dark); color: var(--fg); text-decoration: none;
-    font-size: 1rem; transition: all .2s;
-    transform: rotate(0deg);
-  }
-  .social-link:hover { border-color: var(--magenta); color: var(--magenta); box-shadow: 0 0 15px rgba(255,0,255,0.4); transform: rotate(-5deg) scale(1.1); }
-
-  /* ── SCROLL INDICATOR ── */
-  .scroll-hint {
-    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: .5rem;
-    font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; color: var(--fg); opacity: .4;
-    animation: fadeInOut 2s ease-in-out infinite;
-  }
-  .scroll-hint::after {
-    content: ''; width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--magenta), transparent);
-  }
-  @keyframes fadeInOut { 0%,100%{opacity:.2} 50%{opacity:.6} }
-
-  /* ── GLITCH TEXT ── */
-  .glitch {
-    position: relative;
-  }
-  .glitch::before, .glitch::after {
-    content: attr(data-text);
-    position: absolute; left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: transparent;
-  }
-  .glitch::before {
-    color: var(--cyan); clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    transform: translate(-3px, 0); animation: glitch1 4s infinite; opacity: 0;
-  }
-  .glitch::after {
-    color: var(--magenta); clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    transform: translate(3px, 0); animation: glitch2 4s infinite; opacity: 0;
-  }
-  @keyframes glitch1 { 0%,90%,100%{opacity:0} 91%,93%{opacity:1; transform:translate(-4px,0)} 92%{transform:translate(-6px,-2px)} }
-  @keyframes glitch2 { 0%,90%,100%{opacity:0} 91%,93%{opacity:1; transform:translate(4px,0)} 92%{transform:translate(6px,2px)} }
-
-  /* ── ANIMATED IN ── */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── SECTION DIVIDER ── */
-  .divider {
-    height: 1px; margin: 0;
-    background: linear-gradient(90deg, transparent, var(--magenta), var(--cyan), transparent);
-    opacity: .4;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
-    .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-visual { height: 280px; }
-    .hero-avatar-ring { width: 200px; height: 200px; }
-    .badge-iot, .badge-robot, .badge-code { display: none; }
-    .timeline::before { left: 20px; }
-    .tl-item { grid-template-columns: 1fr; padding-left: 50px; }
-    .tl-item:nth-child(odd) .tl-content,
-    .tl-item:nth-child(even) .tl-content { grid-column: 1; text-align: left; }
-    .tl-dot { left: 20px; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; flex-direction: column; position: fixed; inset: 0; top: 60px; background: rgba(9,0,20,0.98); padding: 2rem; gap: 1.5rem; z-index: 7999; }
-    .nav-links.open { display: flex; }
-    .nav-hamburger { display: block; }
-    #hero, .section-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .hero-inner { padding: 0; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .about-stats { grid-template-columns: 1fr 1fr; }
-  }
-</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-dot"></div>
-<div id="scanlines"></div>
-<div id="sun"></div>
-<canvas id="three-canvas"></canvas>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
-<!-- ── NAV ── -->
-<nav id="main-nav">
-  <div class="nav-brand">SP_</div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#competitions">Competitions</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ── HERO ── -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-eyebrow">SYSTEM ONLINE // INITIALIZING</div>
-      <h1 class="hero-title">
-        <span class="line1 glitch" data-text="SANDEEPA">SANDEEPA</span>
-        <span class="line2">PETHANGODA</span>
-        <span class="line3">// CEO · ENGINEER · BUILDER</span>
-      </h1>
-      <p class="hero-desc">
-        Software engineer, IoT architect & founder of AURON LABS. BSc from BCU · BET in Instrumentation & Automation at University of Colombo. 3+ years freelancing, Upwork-verified, and currently driving industry automation at City Cycle Industries.
-      </p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary"><span>View Projects</span></a>
-        <a href="#contact" class="btn btn-secondary"><span>Contact Me</span></a>
-      </div>
+  <nav class="nav" id="nav" role="navigation" aria-label="Primary navigation">
+    <div class="nav-brand"><span class="nav-monogram">SP</span></div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-section="about">01 ABOUT</a>
+      <a href="#systems" class="nav-link" data-section="systems">02 SYSTEMS</a>
+      <a href="#projects" class="nav-link" data-section="projects">03 PROJECTS</a>
+      <a href="#experience" class="nav-link" data-section="experience">04 EXPERIENCE</a>
+      <a href="#contact" class="nav-link" data-section="contact">05 CONTACT</a>
     </div>
-    <div class="hero-visual">
-      <div class="hero-avatar-ring">
-        <img src="https://i.ibb.co/QFzxZbck/my4.jpg" alt="Sandeepa Pethangoda" class="hero-avatar-img">
-        <div class="hero-avatar-scanlines"></div>
-      </div>
-      <div class="floating-badge badge-iot">IoT_SYS</div>
-      <div class="floating-badge badge-robot">ROBOT_ENG</div>
-      <div class="floating-badge badge-code">DEV_STACK</div>
+    <div class="nav-state">
+      <span class="nav-state-label" id="navStateLabel">INITIALIZING</span>
+      <div class="nav-state-indicator"></div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-links">
+      <a href="#about" class="nav-overlay-link">01 — ABOUT</a>
+      <a href="#systems" class="nav-overlay-link">02 — SYSTEMS</a>
+      <a href="#projects" class="nav-overlay-link">03 — PROJECTS</a>
+      <a href="#experience" class="nav-overlay-link">04 — EXPERIENCE</a>
+      <a href="#contact" class="nav-overlay-link">05 — CONTACT</a>
     </div>
   </div>
-  <div class="scroll-hint">SCROLL</div>
-</section>
 
-<div class="divider"></div>
+  <main id="main-content">
 
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">System Profile</div>
-      <h2 class="section-title">About <span class="accent">Me</span></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Software engineer, IoT systems architect and founder of <strong style="color:var(--cyan)">AURON LABS</strong> — a tech startup focused on automation and embedded solutions. Currently serving as IT Executive at City Cycle Industries, Panadura.</p>
-        <p>Holds a <strong style="color:var(--fg)">BSc in Software Engineering from Birmingham City University (BCU)</strong> and is pursuing a <strong style="color:var(--fg)">BET Honours in Instrumentation & Automation</strong> at the Faculty of Technology, University of Colombo.</p>
-        <p>3+ years of freelancing with 1 year on Upwork — building everything from embedded IoT systems to full-stack web platforms across clients worldwide.</p>
-        <p>President of the Leo Club of Colombo Grand Circle — organized 5+ tech & educational events impacting 500+ students across Sri Lanka.</p>
-        <div class="social-links">
-          <a href="https://sandeepapethangoda.github.io" class="social-link" title="GitHub">⌥</a>
-          <a href="https://www.linkedin.com/in/SandeepaPethangoda" class="social-link" title="LinkedIn">⊞</a>
-          <a href="https://www.youtube.com/@petztech" class="social-link" title="YouTube">▶</a>
-        </div>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="robot-layer" id="robotLayer" aria-hidden="true">
+        <canvas id="robotCanvas"></canvas>
       </div>
-      <div class="about-stats reveal">
-        <div class="stat-box">
-          <span class="stat-num">10+</span>
-          <div class="stat-label">Projects Shipped</div>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">3+</span>
-          <div class="stat-label">Years Freelancing</div>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">2</span>
-          <div class="stat-label">Degrees</div>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">8+</span>
-          <div class="stat-label">Technologies Mastered</div>
-        </div>
+      <div class="blob-ring" id="blobRing" aria-hidden="true"></div>
+      <div class="hero-annotations" aria-hidden="true">
+        <div class="annotation annotation-tl">SYSTEMS</div>
+        <div class="annotation annotation-tr">BACKEND</div>
+        <div class="annotation annotation-bl">IoT</div>
+        <div class="annotation annotation-br">AUTOMATION</div>
+        <div class="annotation annotation-top">AI</div>
+        <div class="annotation annotation-bottom">INFRASTRUCTURE</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── SKILLS ── -->
-<section id="skills">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Capabilities</div>
-      <h2 class="section-title">Tech <span class="accent">Stack</span></h2>
-    </div>
-    <div class="skills-grid">
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg" alt="Arduino"></span>
+      <div class="hero-content">
+        <div class="hero-statement">
+          <span class="hero-index">SYS://001 — A SYSTEM CONSTANTLY BECOMING</span>
         </div>
-        <div class="skill-name">Arduino / C++</div>
-        <div class="skill-desc">Expert in designing and programming custom Arduino-based solutions for robotics and IoT applications.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="95"></div></div>
-        <div class="skill-pct">95%</div>
+        <h1 class="hero-name">SANDEEPA<br/>PETHANGODA</h1>
+        <p class="hero-philosophy">I build systems that connect<br/>the digital and physical world.</p>
+        <p class="hero-roles">
+          <span>Backend Engineer</span><span class="role-sep">·</span>
+          <span>IoT Engineer</span><span class="role-sep">·</span>
+          <span>Automation Builder</span>
+        </p>
+        <p class="hero-sub">Founder, AURON LABS · IT Executive, City Cycle Industries · BSc (BCU)</p>
       </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi"></span>
-        </div>
-        <div class="skill-name">Raspberry Pi</div>
-        <div class="skill-desc">Proficient in Raspberry Pi for advanced projects requiring OS-level functionality, LoRa, and MQTT.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="70"></div></div>
-        <div class="skill-pct">70%</div>
+      <div class="hero-scroll-indicator">
+        <span class="scroll-text">SCROLL TO OBSERVE</span>
+        <div class="scroll-line"></div>
       </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></span>
-        </div>
-        <div class="skill-name">Python</div>
-        <div class="skill-desc">Skilled in Python for data processing, battery monitoring tools, ML, and robotic control systems.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="65"></div></div>
-        <div class="skill-pct">65%</div>
+      <div class="hero-meta" aria-hidden="true">
+        <span class="meta-item">6.9271° N</span><span class="meta-sep">|</span>
+        <span class="meta-item">79.8612° E</span><span class="meta-sep">|</span>
+        <span class="meta-item">MORATUWA, LK</span>
       </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"></span>
-        </div>
-        <div class="skill-name">PHP / Laravel</div>
-        <div class="skill-desc">Experienced in PHP and Laravel for web interfaces, backend systems, and full-stack platforms.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div>
-        <div class="skill-pct">85%</div>
+      <div class="robot-hint" aria-hidden="true">
+        <span class="hint-desktop">○ HOVER — REVEAL THE MACHINE</span>
+        <span class="hint-touch">○ TAP ROBOT — REVEAL THE MACHINE</span>
       </div>
+    </section>
 
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java"></span>
-        </div>
-        <div class="skill-name">Java OOP</div>
-        <div class="skill-desc">Proficient in Java object-oriented programming for robust standalone applications with barcode and reporting.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div>
-        <div class="skill-pct">80%</div>
+    <!-- ═══ 01 ABOUT — OBSERVATION ═══ -->
+    <section class="section-about" id="about" aria-labelledby="about-heading">
+      <div class="section-number" aria-hidden="true">01</div>
+      <div class="section-interlude">
+        <blockquote class="interlude-quote">“Before building a system, understand the system.”</blockquote>
+        <span class="interlude-tag">01 — OBSERVATION</span>
       </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++"></span>
-        </div>
-        <div class="skill-name">C / C++</div>
-        <div class="skill-desc">Core language for embedded systems, microcontroller firmware, and high-performance robotics control loops.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div>
-        <div class="skill-pct">88%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel"></span>
-        </div>
-        <div class="skill-name">Laravel</div>
-        <div class="skill-desc">Full-stack web applications including micasa.lk and YourTutor — REST APIs, WebSockets, and Eloquent ORM.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div>
-        <div class="skill-pct">82%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></span>
-        </div>
-        <div class="skill-name">React</div>
-        <div class="skill-desc">Building interactive UIs — real-time bus tracking dashboards and frontend tooling with WebSockets.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="60"></div></div>
-        <div class="skill-pct">60%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"></span>
-        </div>
-        <div class="skill-name">MySQL / SQL</div>
-        <div class="skill-desc">Relational database design, query optimisation, and integration across PHP, Laravel, and Java projects.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div>
-        <div class="skill-pct">80%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"></span>
-        </div>
-        <div class="skill-name">Git</div>
-        <div class="skill-desc">Version control, branching strategies, and collaborative development workflows across all projects.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="75"></div></div>
-        <div class="skill-pct">75%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux"></span>
-        </div>
-        <div class="skill-name">Linux</div>
-        <div class="skill-desc">Server administration, Apache/Nginx/MySQL stacks, AWS VPS setup, and embedded Linux on Raspberry Pi.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="72"></div></div>
-        <div class="skill-pct">72%</div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon-wrap">
-          <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></span>
-        </div>
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-desc">Frontend interactivity, MQTT dashboards, real-time WebSocket clients, and IoT browser interfaces.</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="70"></div></div>
-        <div class="skill-pct">70%</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── PROJECTS ── -->
-<section id="projects">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Portfolio</div>
-      <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
-    </div>
-    <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/dRP1Z4j/Whats-App-Image-2025-04-20-at-22-43-07-39705fae.jpg" alt="SLIOT'23" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">Arduino</span><span class="project-tag">LoRa</span><span class="project-tag">MQTT</span><span class="project-tag">C++</span></div>
-          <div class="project-title">SLIOT'23 — Autonomous Boat Tracker</div>
-          <div class="project-desc">Connectionless LoRa-based tracker system for autonomous maritime tracking. Second Runners Up.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/tMXTFphb/Whats-App-Image-2025-04-20-at-22-48-39-0a8fd6c3.jpg" alt="ROBO-GAMES'25" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">Arduino C++</span><span class="project-tag">RC</span><span class="project-tag">IoT</span></div>
-          <div class="project-title">ROBO-GAMES'25 — Battle Bot</div>
-          <div class="project-desc">Competed in University of Moratuwa's ROBO-GAMES. Custom battlebot with spinning weapon on 3S/18650 cell configuration.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/LzBC4S9g/66-EE2940-FD16-41-B0-BD84-9-E6-AE4-C09-AD7.png" alt="YourTutor" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Laravel</span><span class="project-tag">MySQL</span><span class="project-tag">WebSockets</span></div>
-          <div class="project-title">YourTutor — Sri Lanka Tutor Platform</div>
-          <div class="project-desc">Web platform for tutors in Sri Lanka to connect with students and manage their classes in real time.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/Cs38shvD/0-F6-BF469-E75-D-4-C4-D-9-F8-F-5-D551-A36-C5-F6.png" alt="Ru Edu" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">Bootstrap</span><span class="project-tag">Barcode</span></div>
-          <div class="project-title">Ru Edu — Institute Management Portal</div>
-          <div class="project-desc">Full-stack platform for educational institutes to manage operations, student records, and barcode attendance.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/YT3381k5/635-AFE5-A-E66-B-4-DE7-A8-FB-9889-D0-CFB302.png" alt="Smart Switch" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">ESP01S</span><span class="project-tag">MQTT</span><span class="project-tag">EasyEDA</span></div>
-          <div class="project-title">WiFi Smart Switch — ESP-01S</div>
-          <div class="project-desc">Minimal-footprint smart switch built on custom PCB via EasyEDA. WiFi + MQTT controlled for every room.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <img src="https://i.ibb.co/TD53FdRd/D1366-FD3-B17-B-4057-9923-7-A44-D370-F68-E.png" alt="Smart Glove" class="project-img">
-        <div class="project-body">
-          <div class="project-tags"><span class="project-tag">NRF24L01</span><span class="project-tag">Bluetooth</span><span class="project-tag">Arduino</span></div>
-          <div class="project-title">Smart Glove — Presenter Controller</div>
-          <div class="project-desc">Wearable glove that mimics keyboard shortcuts for presentations, with embedded laser pointer. NRF24L01 wireless.</div>
-          <a href="#" class="project-link">VIEW DETAILS →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── COMPETITIONS ── -->
-<section id="competitions">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Achievements</div>
-      <h2 class="section-title">Competition <span class="accent">Log</span></h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-content">
-          <div class="tl-award">🏆 2nd Runners Up</div>
-          <div class="tl-year">2024</div>
-          <div class="tl-title">SLIOT'23 — IoT Challenge</div>
-          <div class="tl-desc">Won third place in autonomous navigation category with a custom LoRa-based maritime tracker featuring advanced algorithms.</div>
-        </div>
-        <div class="tl-dot"></div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-content">
-          <div class="tl-award">🥇 1st Round Winner</div>
-          <div class="tl-year">2023</div>
-          <div class="tl-title">Hackathon — Java Institute</div>
-          <div class="tl-desc">Earned for innovative design of a social gathering app with real-time mapping and user location features.</div>
-        </div>
-        <div class="tl-dot"></div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-content">
-          <div class="tl-award">⚔ Competed</div>
-          <div class="tl-year">2025</div>
-          <div class="tl-title">ROBO-GAMES — University of Moratuwa</div>
-          <div class="tl-desc">Led a team into combat with a custom-engineered battlebot, competing at university level against seasoned teams.</div>
-        </div>
-        <div class="tl-dot"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── EDUCATION ── -->
-<section id="education">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Academic Record</div>
-      <h2 class="section-title">Edu<span class="accent">cation</span></h2>
-    </div>
-    <div class="edu-grid">
-
-      <div class="edu-card reveal">
-        <span class="edu-status completed">✓ COMPLETED</span>
-        <div class="edu-header">
-          <div class="edu-logo-wrap">
-            <img src="https://logowik.com/content/uploads/images/bcu-birmingham-city-university1638.jpg" alt="BCU logo" onerror="this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:.8rem;font-weight:900;color:#003DA5\'>BCU</span>'">
-          </div>
-          <div>
-            <div class="edu-degree">BSc Software Engineering</div>
-            <div class="edu-field">Bachelor of Science — Software Engineering</div>
-          </div>
-        </div>
-        <div class="edu-institution">Birmingham City University (BCU)<br>United Kingdom</div>
-        <div class="edu-year">Undergraduate · BCU</div>
-      </div>
-
-      <div class="edu-card upcoming reveal">
-        <span class="edu-status upcoming-tag">◉ UPCOMING</span>
-        <div class="edu-header">
-          <div class="edu-logo-wrap" style="background:rgba(255,255,255,0.08)">
-            <img src="https://cmb.ac.lk/wp-content/uploads/logo-web.png" alt="University of Colombo logo" onerror="this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:.7rem;font-weight:900;color:#6B2D8B\'>UoC</span>'">
-          </div>
-          <div>
-            <div class="edu-degree">BET Honours — Instrumentation &amp; Automation</div>
-            <div class="edu-field">Bachelor of Engineering Technology (Honours)</div>
-          </div>
-        </div>
-        <div class="edu-institution">Faculty of Technology<br>University of Colombo, Sri Lanka</div>
-        <div class="edu-year">Mechatronics Stream · UoC</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── EXPERIENCE ── -->
-<section id="experience">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Professional Log</div>
-      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
-    </div>
-    <div class="exp-list">
-
-      <div class="exp-item reveal">
-        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
-        <div>
-          <div class="exp-role">CEO &amp; Founder</div>
-          <div class="exp-company-row">
-            <div class="exp-logo-wrap" style="background:rgba(0,255,255,0.08);border-color:rgba(0,255,255,0.2)">
-              <img src="https://img.icons8.com/fluency/48/rocket.png" alt="Auron Labs" style="filter:none">
+      <div class="about-container">
+        <div class="about-label"><span class="label-text">OBSERVATION</span><div class="label-line"></div></div>
+        <div class="about-grid">
+          <div class="about-identity">
+            <h2 id="about-heading" class="about-heading">CEO · Engineer · Builder</h2>
+            <figure class="about-portrait">
+              <img src="assets/profile.jpg" alt="Portrait of Sandeepa Pethangoda" loading="lazy" />
+              <figcaption>FIG. 00 — THE OBSERVER · Moratuwa, Sri Lanka</figcaption>
+            </figure>
+            <div class="about-body">
+              <p>Software engineer, IoT systems architect and founder of <strong>AURON LABS</strong> — a tech startup focused on automation and embedded solutions. Currently serving as <strong>IT Executive at City Cycle Industries</strong>, Panadura.</p>
+              <p>Holds a <strong>BSc in Software Engineering from Birmingham City University (BCU)</strong> and is pursuing a <strong>BET Honours in Instrumentation &amp; Automation</strong> at the Faculty of Technology, University of Colombo.</p>
+              <p><strong>3+ years of freelancing with 1 year on Upwork</strong> — building everything from embedded IoT systems to full-stack web platforms across clients worldwide.</p>
+              <p>President of the <strong>Leo Club of Colombo Grand Circle</strong> — organized 5+ tech &amp; educational events impacting 500+ students across Sri Lanka.</p>
             </div>
-            <strong style="color:var(--fg)">AURON LABS</strong> <span style="opacity:.5;font-size:.8rem">· Tech Startup</span>
-          </div>
-          <span class="exp-duration">2024 — PRESENT</span>
-          <div class="exp-desc">Founded and leading AURON LABS, a technology startup specialising in automation, IoT systems, and embedded solutions. Driving product development, client delivery, and technical strategy.</div>
-          <div class="exp-tags">
-            <span class="exp-tag">IoT</span><span class="exp-tag">Automation</span><span class="exp-tag">Embedded Systems</span><span class="exp-tag">Leadership</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
-        <div>
-          <div class="exp-role">IT Executive</div>
-          <div class="exp-company-row">
-            <div class="exp-logo-wrap">
-              <img src="https://img.icons8.com/fluency/48/factory.png" alt="City Cycle Industries" style="filter:none">
+            <div class="about-stats-row" role="list">
+              <div class="about-stat" role="listitem"><span class="about-stat-num">10+</span><span class="about-stat-label">Projects shipped</span></div>
+              <div class="about-stat" role="listitem"><span class="about-stat-num">3+</span><span class="about-stat-label">Years freelancing</span></div>
+              <div class="about-stat" role="listitem"><span class="about-stat-num">2</span><span class="about-stat-label">Degrees</span></div>
+              <div class="about-stat" role="listitem"><span class="about-stat-num">12</span><span class="about-stat-label">Core technologies</span></div>
             </div>
-            <strong style="color:var(--fg)">City Cycle Industries</strong> <span style="opacity:.5;font-size:.8rem">· Panadura, Sri Lanka</span>
           </div>
-          <span class="exp-duration">INDUSTRY ROLE</span>
-          <div class="exp-desc">Managing IT infrastructure and software systems for a manufacturing environment. Driving digitisation, system integration, and technical support across production and administrative operations.</div>
-          <div class="exp-tags">
-            <span class="exp-tag">IT Management</span><span class="exp-tag">Manufacturing</span><span class="exp-tag">Systems Integration</span><span class="exp-tag">PHP</span>
+          <div class="about-attributes">
+            <div class="attribute-item"><span class="attribute-key">DOMAIN</span><span class="attribute-val">Backend · IoT · Automation</span></div>
+            <div class="attribute-item"><span class="attribute-key">COMPANY</span><span class="attribute-val">AURON LABS (Founder &amp; CEO)</span></div>
+            <div class="attribute-item"><span class="attribute-key">CURRENT</span><span class="attribute-val">IT Executive @ City Cycle Industries</span></div>
+            <div class="attribute-item"><span class="attribute-key">EDUCATION</span><span class="attribute-val">BSc Software Eng., BCU · BET (Hons) UoC</span></div>
+            <div class="attribute-item"><span class="attribute-key">FREELANCE</span><span class="attribute-val">Self-employed 3+ yrs · Upwork 1 yr</span></div>
+            <div class="attribute-item"><span class="attribute-key">LEADERSHIP</span><span class="attribute-val">President, Leo Club Colombo Grand Circle</span></div>
           </div>
         </div>
+        <div class="about-links">
+          <a href="https://github.com/SandeepaPethangoda" class="link-btn" target="_blank" rel="noopener"><span class="link-icon">⌥</span>GITHUB</a>
+          <a href="https://www.linkedin.com/in/SandeepaPethangoda" class="link-btn" target="_blank" rel="noopener"><span class="link-icon">⊞</span>LINKEDIN</a>
+          <a href="https://www.youtube.com/@petztech" class="link-btn" target="_blank" rel="noopener"><span class="link-icon">▶</span>YOUTUBE</a>
+        </div>
       </div>
+      <div class="texture-strip" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=60&auto=format&fit=crop" alt="" loading="lazy" />
+      </div>
+    </section>
 
-      <div class="exp-item reveal">
-        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
-        <div>
-          <div class="exp-role">Freelance Engineer</div>
-          <div class="exp-company-row">
-            <div class="exp-logo-wrap color" style="background:#1D4354;border-color:#14A800">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Upwork_logo.svg" alt="Upwork" style="filter:none">
+    <!-- ═══ 02 SYSTEMS ═══ -->
+    <section class="section-systems" id="systems" aria-labelledby="systems-heading">
+      <div class="section-number" aria-hidden="true">02</div>
+      <div class="section-interlude">
+        <blockquote class="interlude-quote">“What happens when an idea becomes a system?”</blockquote>
+        <span class="interlude-tag">02 — THINKING · FROM THOUGHT TO ARCHITECTURE</span>
+      </div>
+      <div class="systems-container">
+        <div class="systems-label"><span class="label-text">SYSTEMS MAP</span><div class="label-line"></div></div>
+        <div class="systems-head">
+          <h2 id="systems-heading" class="systems-heading">The Architecture<br/>of Thought</h2>
+          <p class="systems-intro">Every build follows the same descent — <strong>Thought → System → Code → Machine → Reality</strong>. Software ends where the physical world begins. This map shows how I work across that full stack.</p>
+        </div>
+        <div class="pipeline-block">
+          <span class="pipeline-caption">FIG. 01 — SIGNAL PATH · API TO PHYSICAL WORLD</span>
+          <ol class="pipeline" aria-label="System pipeline: API to Physical World">
+            <li class="pipeline-node active"><span class="pipe-index">01</span><span class="pipeline-label">API</span></li>
+            <li class="pipeline-connector" aria-hidden="true">→</li>
+            <li class="pipeline-node"><span class="pipe-index">02</span><span class="pipeline-label">SERVER</span></li>
+            <li class="pipeline-connector" aria-hidden="true">→</li>
+            <li class="pipeline-node"><span class="pipe-index">03</span><span class="pipeline-label">NETWORK</span></li>
+            <li class="pipeline-connector" aria-hidden="true">→</li>
+            <li class="pipeline-node"><span class="pipe-index">04</span><span class="pipeline-label">MICROCONTROLLER</span></li>
+            <li class="pipeline-connector" aria-hidden="true">→</li>
+            <li class="pipeline-node"><span class="pipe-index">05</span><span class="pipeline-label">SENSOR</span></li>
+            <li class="pipeline-connector" aria-hidden="true">→</li>
+            <li class="pipeline-node physical"><span class="pipe-index">06</span><span class="pipeline-label">PHYSICAL WORLD</span></li>
+          </ol>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group" data-group="backend">
+            <div class="skill-group-header"><span class="skill-group-icon">⬡</span><h3 class="skill-group-title">BACKEND</h3></div>
+            <div class="skill-tags">
+              <span class="skill-tag">PHP / Laravel</span><span class="skill-tag">Java OOP</span>
+              <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">React</span><span class="skill-tag">MySQL / SQL</span>
+              <span class="skill-tag">REST APIs</span><span class="skill-tag">WebSockets</span>
+              <span class="skill-tag">Bootstrap</span>
             </div>
-            <strong style="color:var(--fg)">Upwork</strong> <span style="opacity:.5;font-size:.8rem">· Global Remote</span>
+            <p class="skill-note">Web interfaces, full-stack platforms — YourTutor, Ru Edu, institute portals.</p>
           </div>
-          <span class="exp-duration">1 YR · UPWORK</span>
-          <div class="exp-desc">Delivered software and IoT projects to international clients on Upwork — spanning backend development, Arduino systems, and automation tooling.</div>
-          <div class="exp-tags">
-            <span class="exp-tag">Upwork</span><span class="exp-tag">Remote</span><span class="exp-tag">Backend Dev</span><span class="exp-tag">Client Delivery</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-icon-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
-        <div>
-          <div class="exp-role">Independent Freelancer</div>
-          <div class="exp-company-row">
-            <div class="exp-logo-wrap">
-              <img src="https://img.icons8.com/fluency/48/laptop-coding.png" alt="Freelancer" style="filter:none">
+          <div class="skill-group" data-group="infrastructure">
+            <div class="skill-group-header"><span class="skill-group-icon">⬡</span><h3 class="skill-group-title">INFRASTRUCTURE</h3></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Linux</span><span class="skill-tag">Git</span>
+              <span class="skill-tag">Apache / Nginx</span><span class="skill-tag">AWS VPS</span>
+              <span class="skill-tag">Servers</span><span class="skill-tag">Networking</span>
             </div>
-            <strong style="color:var(--fg)">Self-Employed</strong> <span style="opacity:.5;font-size:.8rem">· Sri Lanka &amp; Remote</span>
+            <p class="skill-note">Server administration, LAMP stacks, embedded Linux on Raspberry Pi.</p>
           </div>
-          <span class="exp-duration">3+ YRS · FREELANCING</span>
-          <div class="exp-desc">Built 10+ software and IoT solutions independently — from hospital management systems and institute portals to real-time bus tracking apps, smart switches, and battlebots.</div>
-          <div class="exp-tags">
-            <span class="exp-tag">PHP</span><span class="exp-tag">Java</span><span class="exp-tag">Arduino</span><span class="exp-tag">React</span><span class="exp-tag">Laravel</span>
+          <div class="skill-group" data-group="iot">
+            <div class="skill-group-header"><span class="skill-group-icon">⬡</span><h3 class="skill-group-title">IoT / HARDWARE</h3></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Arduino / C++</span><span class="skill-tag">C / C++</span>
+              <span class="skill-tag">Raspberry Pi</span><span class="skill-tag">ESP-01S</span>
+              <span class="skill-tag">MQTT</span><span class="skill-tag">LoRa</span>
+              <span class="skill-tag">NRF24L01</span><span class="skill-tag">Bluetooth</span>
+              <span class="skill-tag">EasyEDA / PCB</span><span class="skill-tag">RC Systems</span>
+            </div>
+            <p class="skill-note">Custom firmware, wireless links, PCB design — boats, bots, switches, gloves.</p>
           </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── CERTIFICATIONS ── -->
-<section id="certifications">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Credentials</div>
-      <h2 class="section-title">Certifi<span class="accent">cations</span></h2>
-    </div>
-    <div class="cert-grid">
-
-      <div class="cert-card reveal">
-        <div class="cert-issuer">Harvard University · edX</div>
-        <div class="cert-header">
-          <div class="logo-img-wrap color" style="background:#A51C30;border-color:rgba(165,28,48,0.4);width:42px;height:42px;border-radius:50%">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Harvard_University_coat_of_arms.svg" alt="Harvard" style="filter:none;padding:2px">
-          </div>
-          <div>
-            <div class="cert-name">CS50x: Introduction to<br>Computer Science</div>
-          </div>
-        </div>
-        <div class="cert-sub">
-          Harvard's legendary introductory course covering C, Python, SQL, HTML/CSS/JS, algorithms, data structures, and software engineering fundamentals.
-        </div>
-        <div class="cert-meta">
-          <span class="cert-year">2025</span>
-          <span class="cert-badge">✓ VERIFIED</span>
-        </div>
-        <a href="https://certificates.cs50.io/262b63ef-8f23-4e47-a650-985c53bcaf22.pdf?size=letter" target="_blank" class="cert-verify">VIEW CERTIFICATE →</a>
-      </div>
-
-      <div class="cert-card reveal">
-        <div class="cert-issuer">Birmingham City University · UK</div>
-        <div class="cert-header">
-          <div class="logo-img-wrap" style="background:#fff;border-color:rgba(0,61,165,0.3);width:42px;height:42px">
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/c8/Birmingham_City_University_logo.svg" alt="BCU" style="filter:none">
-          </div>
-          <div>
-            <div class="cert-name">BSc Software Engineering</div>
-          </div>
-        </div>
-        <div class="cert-sub">
-          Undergraduate degree in Software Engineering from Birmingham City University, UK — covering software architecture, systems design, algorithms, and full-stack development.
-        </div>
-        <div class="cert-meta">
-          <span class="cert-year">UG DEGREE</span>
-          <span class="cert-badge">✓ AWARDED</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">Transmission</div>
-      <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
-    </div>
-    <div class="contact-grid">
-      <div class="terminal-window reveal">
-        <div class="terminal-bar">
-          <div class="terminal-dot close"></div>
-          <div class="terminal-dot min"></div>
-          <div class="terminal-dot max"></div>
-          <span class="terminal-title">contact.sh — bash</span>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">whoami</span>
-            <span class="terminal-value">Sandeepa Pethangoda</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">email</span>
-            <span class="terminal-value">petztechlk@gmail.com</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">phone</span>
-            <span class="terminal-value">+94 76 275 4993</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">location</span>
-            <span class="terminal-value">Moratuwa, Sri Lanka 10400</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">github</span>
-            <span class="terminal-value">sandeepapethangoda.github.io</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-label">status</span>
-            <span class="terminal-value" style="color:var(--orange)">OPEN TO WORK ▮</span>
+          <div class="skill-group" data-group="practice">
+            <div class="skill-group-header"><span class="skill-group-icon">⬡</span><h3 class="skill-group-title">SYSTEMS PRACTICE</h3></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Embedded Systems</span>
+              <span class="skill-tag">Robotics</span><span class="skill-tag">Barcode Systems</span>
+              <span class="skill-tag">Real-time Dashboards</span><span class="skill-tag">Client Delivery</span>
+            </div>
+            <p class="skill-note">Manufacturing IT, digitisation, production support — City Cycle Industries.</p>
           </div>
         </div>
       </div>
+      <div class="interlude-statement" aria-hidden="true"><p>“Complexity is not the goal. Understanding is.”</p></div>
+    </section>
 
-      <div class="contact-form-wrap reveal">
-        <form id="contact-form">
-          <div class="form-group">
-            <label class="form-label">// Name</label>
-            <input type="text" class="form-input" id="name" placeholder="Your name..." required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">// Email</label>
-            <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">// Subject</label>
-            <input type="text" class="form-input" id="subject" placeholder="Subject...">
-          </div>
-          <div class="form-group">
-            <label class="form-label">// Message</label>
-            <textarea class="form-input form-textarea" id="message" placeholder="Your message..." required></textarea>
-          </div>
-          <button type="submit" class="form-submit"><span>⌐ TRANSMIT MESSAGE ¬</span></button>
-        </form>
+    <!-- ═══ 03 PROJECTS — ARTIFACTS ═══ -->
+    <section class="section-projects" id="projects" aria-labelledby="projects-heading">
+      <div class="section-number" aria-hidden="true">03</div>
+      <div class="section-interlude">
+        <blockquote class="interlude-quote">“Where does software end?”</blockquote>
+        <span class="interlude-tag">03 — BUILDING · ARTIFACTS IN THE LABORATORY</span>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="projects-container">
+        <div class="projects-label"><span class="label-text">ARTIFACTS — 6 DOCUMENTED SYSTEMS</span><div class="label-line"></div></div>
+        <h2 id="projects-heading" class="projects-heading">Systems Built</h2>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-brand"><span class="c">SANDEEPA</span><span class="m">PETHANGODA</span></div>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="footer-copy">© 2025 // ALL SYSTEMS OPERATIONAL</div>
-</footer>
+        <article class="project-artifact" aria-labelledby="proj-sliot">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/dRP1Z4j/Whats-App-Image-2025-04-20-at-22-43-07-39705fae.jpg" alt="SLIOT autonomous boat tracker hardware" loading="lazy" />
+            <span class="photo-fig">FIG. 01 — MARITIME NODE</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">001</span><span class="project-type">IoT · LORA TRACKER</span><span class="project-status status-active">2ND RUNNERS-UP · SLIOT'23</span></div>
+            <h3 id="proj-sliot" class="project-name">SLIOT'23 — Autonomous Boat Tracker</h3>
+            <p class="project-description">Connectionless LoRa-based tracker system for autonomous maritime tracking. Custom algorithms for navigation without persistent connection. Awarded Second Runners-Up at SLIOT'23.</p>
+            <div class="project-architecture"><span class="arch-node">Boat Node</span><span class="arch-arrow">→</span><span class="arch-node">LoRa Radio</span><span class="arch-arrow">→</span><span class="arch-node">MQTT</span><span class="arch-arrow">→</span><span class="arch-node">Tracker</span></div>
+            <div class="project-tech-row"><span class="tech-tag">Arduino</span><span class="tech-tag">LoRa</span><span class="tech-tag">MQTT</span><span class="tech-tag">C++</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-<!-- ── THREE.JS ── -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-// ─────────────── THREE.JS SCENE ───────────────
-(function() {
-  const canvas = document.getElementById('three-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 0);
+        <article class="project-artifact" aria-labelledby="proj-bot">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/tMXTFphb/Whats-App-Image-2025-04-20-at-22-48-39-0a8fd6c3.jpg" alt="Custom battle bot built for ROBO-GAMES 2025" loading="lazy" />
+            <span class="photo-fig">FIG. 02 — COMBAT MACHINE</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">002</span><span class="project-type">ROBOTICS · COMBAT</span><span class="project-status status-active">ROBO-GAMES'25 · UoM</span></div>
+            <h3 id="proj-bot" class="project-name">ROBO-GAMES'25 — Battle Bot</h3>
+            <p class="project-description">Competed in University of Moratuwa's ROBO-GAMES. Custom battlebot with spinning weapon on 3S / 18650 cell configuration. Full mechanical, electrical and RC integration led in-house.</p>
+            <div class="project-architecture"><span class="arch-node">RC Link</span><span class="arch-arrow">→</span><span class="arch-node">3S Power</span><span class="arch-arrow">→</span><span class="arch-node">Weapon ESC</span><span class="arch-arrow">→</span><span class="arch-node">Chassis</span></div>
+            <div class="project-tech-row"><span class="tech-tag">Arduino</span><span class="tech-tag">C++</span><span class="tech-tag">RC</span><span class="tech-tag">IoT</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 4, 14);
-  camera.lookAt(0, 0, 0);
+        <article class="project-artifact" aria-labelledby="proj-tutor">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/LzBC4S9g/66-EE2940-FD16-41-B0-BD84-9-E6-AE4-C09-AD7.png" alt="YourTutor platform interface" loading="lazy" />
+            <span class="photo-fig">FIG. 03 — TUTOR PLATFORM</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">003</span><span class="project-type">FULL-STACK WEB</span><span class="project-status status-active">OPERATIONAL</span></div>
+            <h3 id="proj-tutor" class="project-name">YourTutor — Sri Lanka Tutor Platform</h3>
+            <p class="project-description">Web platform for tutors in Sri Lanka to connect with students and manage their classes in real time. Profiles, class management and real-time updates.</p>
+            <div class="project-architecture"><span class="arch-node">Laravel API</span><span class="arch-arrow">→</span><span class="arch-node">MySQL</span><span class="arch-arrow">→</span><span class="arch-node">WebSockets</span><span class="arch-arrow">→</span><span class="arch-node">Live UI</span></div>
+            <div class="project-tech-row"><span class="tech-tag">PHP</span><span class="tech-tag">Laravel</span><span class="tech-tag">MySQL</span><span class="tech-tag">WebSockets</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-  // ── PERSPECTIVE GRID ──
-  const GRID_W = 40, GRID_H = 60, SEG = 1;
-  const gridGeo = new THREE.BufferGeometry();
-  const positions = [];
-  const colors = [];
-  const c1 = new THREE.Color(0xFF00FF);
-  const c2 = new THREE.Color(0x00FFFF);
+        <article class="project-artifact" aria-labelledby="proj-ruedu">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/Cs38shvD/0-F6-BF469-E75-D-4-C4-D-9-F8-F-5-D551-A36-C5-F6.png" alt="Ru Edu institute management portal" loading="lazy" />
+            <span class="photo-fig">FIG. 04 — INSTITUTE SYSTEM</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">004</span><span class="project-type">FULL-STACK · OPS</span><span class="project-status status-active">DEPLOYED</span></div>
+            <h3 id="proj-ruedu" class="project-name">Ru Edu — Institute Management Portal</h3>
+            <p class="project-description">Full-stack platform for educational institutes to manage operations, student records, and barcode attendance. Reporting and standalone Java OOP modules included.</p>
+            <div class="project-architecture"><span class="arch-node">PHP Backend</span><span class="arch-arrow">→</span><span class="arch-node">Barcode Engine</span><span class="arch-arrow">→</span><span class="arch-node">Records DB</span><span class="arch-arrow">→</span><span class="arch-node">Dashboard</span></div>
+            <div class="project-tech-row"><span class="tech-tag">PHP</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">Barcode</span><span class="tech-tag">Java</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-  // horizontal lines
-  for (let z = -GRID_H/2; z <= GRID_H/2; z += SEG) {
-    const t = (z + GRID_H/2) / GRID_H;
-    const color = c1.clone().lerp(c2, t);
-    positions.push(-GRID_W/2, 0, z, GRID_W/2, 0, z);
-    colors.push(color.r, color.g, color.b, color.r, color.g, color.b);
-  }
-  // vertical lines
-  for (let x = -GRID_W/2; x <= GRID_W/2; x += SEG) {
-    positions.push(x, 0, -GRID_H/2, x, 0, GRID_H/2);
-    colors.push(c1.r, c1.g, c1.b, c2.r, c2.g, c2.b);
-  }
+        <article class="project-artifact" aria-labelledby="proj-switch">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/YT3381k5/635-AFE5-A-E66-B-4-DE7-A8-FB-9889-D0-CFB302.png" alt="ESP-01S WiFi smart switch custom PCB" loading="lazy" />
+            <span class="photo-fig">FIG. 05 — ROOM NODE</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">005</span><span class="project-type">EMBEDDED · PCB</span><span class="project-status status-active">DEPLOYED</span></div>
+            <h3 id="proj-switch" class="project-name">WiFi Smart Switch — ESP-01S</h3>
+            <p class="project-description">Minimal-footprint smart switch built on custom PCB via EasyEDA. WiFi + MQTT controlled for every room. Designed for low cost, small area and reliable switching.</p>
+            <div class="project-architecture"><span class="arch-node">ESP-01S</span><span class="arch-arrow">→</span><span class="arch-node">Custom PCB</span><span class="arch-arrow">→</span><span class="arch-node">MQTT</span><span class="arch-arrow">→</span><span class="arch-node">Room Load</span></div>
+            <div class="project-tech-row"><span class="tech-tag">ESP-01S</span><span class="tech-tag">MQTT</span><span class="tech-tag">EasyEDA</span><span class="tech-tag">C++</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-  gridGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  gridGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-  const gridMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.4 });
-  const grid = new THREE.LineSegments(gridGeo, gridMat);
-  grid.rotation.x = -Math.PI / 2;
-  grid.position.y = -6;
-  scene.add(grid);
+        <article class="project-artifact" aria-labelledby="proj-glove">
+          <div class="project-3d-stage">
+            <img class="project-photo" src="https://i.ibb.co/TD53FdRd/D1366-FD3-B17-B-4057-9923-7-A44-D370-F68-E.png" alt="Smart glove presenter controller" loading="lazy" />
+            <span class="photo-fig">FIG. 06 — WEARABLE</span>
+          </div>
+          <div class="project-data">
+            <div class="project-meta-row"><span class="project-index">006</span><span class="project-type">WEARABLE · WIRELESS</span><span class="project-status status-active">PROTOTYPE</span></div>
+            <h3 id="proj-glove" class="project-name">Smart Glove — Presenter Controller</h3>
+            <p class="project-description">Wearable glove that mimics keyboard shortcuts for presentations, with embedded laser pointer. NRF24L01 wireless link plus Bluetooth for host control.</p>
+            <div class="project-architecture"><span class="arch-node">Glove Sensors</span><span class="arch-arrow">→</span><span class="arch-node">NRF24L01</span><span class="arch-arrow">→</span><span class="arch-node">Receiver</span><span class="arch-arrow">→</span><span class="arch-node">HID Keys</span></div>
+            <div class="project-tech-row"><span class="tech-tag">NRF24L01</span><span class="tech-tag">Bluetooth</span><span class="tech-tag">Arduino</span></div>
+            <div class="project-links"><a href="https://github.com/SandeepaPethangoda" class="project-link" target="_blank" rel="noopener">VIEW PROJECT →</a></div>
+          </div>
+        </article>
 
-  // ── FLOATING PARTICLES ──
-  const particleCount = 180;
-  const pGeo = new THREE.BufferGeometry();
-  const pPos = new Float32Array(particleCount * 3);
-  const pCol = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount; i++) {
-    pPos[i*3]   = (Math.random() - 0.5) * 50;
-    pPos[i*3+1] = (Math.random() - 0.5) * 30;
-    pPos[i*3+2] = (Math.random() - 0.5) * 50;
-    const c = Math.random() > 0.5 ? [1, 0, 1] : [0, 1, 1];
-    pCol[i*3] = c[0]; pCol[i*3+1] = c[1]; pCol[i*3+2] = c[2];
-  }
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
-  const pMat = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.8 });
-  const particles = new THREE.Points(pGeo, pMat);
-  scene.add(particles);
+      </div>
+      <div class="interlude-statement"><p>“Code becomes interesting when it touches reality.”</p></div>
+    </section>
 
-  // ── FLOATING WIREFRAME TORUS ──
-  const torusGeo = new THREE.TorusGeometry(4, 1.5, 8, 24);
-  const torusMat = new THREE.MeshBasicMaterial({ color: 0xFF00FF, wireframe: true, transparent: true, opacity: 0.12 });
-  const torus = new THREE.Mesh(torusGeo, torusMat);
-  torus.position.set(12, 2, -8);
-  scene.add(torus);
+    <!-- ═══ 04 EXPERIENCE ═══ -->
+    <section class="section-experience" id="experience" aria-labelledby="experience-heading">
+      <div class="section-number" aria-hidden="true">04</div>
+      <div class="section-interlude">
+        <blockquote class="interlude-quote">“A system is defined by its relationships.”</blockquote>
+        <span class="interlude-tag">04 — TIME · TIMELINE OF SYSTEMS BUILT</span>
+      </div>
+      <div class="experience-container">
+        <div class="experience-label"><span class="label-text">TIMELINE</span><div class="label-line"></div></div>
+        <h2 id="experience-heading" class="experience-heading">Systems Built<br/>Over Time</h2>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-period">2024 — PRESENT</div>
+              <h3 class="timeline-role">CEO &amp; Founder</h3>
+              <div class="timeline-org">AURON LABS — Tech Startup, Sri Lanka</div>
+              <div class="timeline-details">
+                <p>Founded and leading AURON LABS, specialising in automation, IoT systems, and embedded solutions. Driving product development, client delivery, and technical strategy.</p>
+                <div class="timeline-tags"><span class="tl-tag">IoT</span><span class="tl-tag">Automation</span><span class="tl-tag">Embedded</span><span class="tl-tag">Leadership</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-period">PRESENT — INDUSTRY ROLE</div>
+              <h3 class="timeline-role">IT Executive</h3>
+              <div class="timeline-org">City Cycle Industries — Panadura, Sri Lanka</div>
+              <div class="timeline-details">
+                <p>Managing IT infrastructure and software systems for a manufacturing environment. Driving digitisation, system integration, and technical support across production and administrative operations.</p>
+                <div class="timeline-tags"><span class="tl-tag">IT Management</span><span class="tl-tag">Manufacturing</span><span class="tl-tag">Systems Integration</span><span class="tl-tag">PHP</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-period">1 YR · UPWORK</div>
+              <h3 class="timeline-role">Freelance Engineer</h3>
+              <div class="timeline-org">Upwork — Global Remote</div>
+              <div class="timeline-details">
+                <p>Delivered software and IoT projects to international clients on Upwork — spanning backend development, Arduino systems, and automation tooling.</p>
+                <div class="timeline-tags"><span class="tl-tag">Upwork</span><span class="tl-tag">Remote</span><span class="tl-tag">Backend Dev</span><span class="tl-tag">Client Delivery</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-period">3+ YRS · FREELANCING</div>
+              <h3 class="timeline-role">Independent Freelancer</h3>
+              <div class="timeline-org">Self-Employed — Sri Lanka &amp; Remote</div>
+              <div class="timeline-details">
+                <p>Built 10+ software and IoT solutions independently — from hospital management systems and institute portals to real-time bus tracking apps, smart switches, and battlebots.</p>
+                <div class="timeline-tags"><span class="tl-tag">PHP</span><span class="tl-tag">Java</span><span class="tl-tag">Arduino</span><span class="tl-tag">React</span><span class="tl-tag">Laravel</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  // ── FLOATING ICOSAHEDRON ──
-  const icoGeo = new THREE.IcosahedronGeometry(2.5, 1);
-  const icoMat = new THREE.MeshBasicMaterial({ color: 0x00FFFF, wireframe: true, transparent: true, opacity: 0.1 });
-  const ico = new THREE.Mesh(icoGeo, icoMat);
-  ico.position.set(-14, 3, -10);
-  scene.add(ico);
+        <div class="education-block">
+          <div class="education-label"><span class="label-text">EDUCATION</span><div class="label-line"></div></div>
+          <div class="education-items">
+            <div class="education-item">
+              <div class="edu-period">COMPLETED · UNDERGRADUATE</div>
+              <div class="edu-degree">BSc Software Engineering</div>
+              <div class="edu-institution">Birmingham City University (BCU), United Kingdom</div>
+            </div>
+            <div class="education-item">
+              <div class="edu-period">IN PROGRESS · MECHATRONICS STREAM</div>
+              <div class="edu-degree">BET Honours — Instrumentation &amp; Automation</div>
+              <div class="edu-institution">Faculty of Technology, University of Colombo, Sri Lanka</div>
+            </div>
+          </div>
+        </div>
 
-  // ── SUN DISC ──
-  const sunGeo = new THREE.CircleGeometry(6, 64);
-  const sunColors = [];
-  const sunPos = sunGeo.attributes.position;
-  for (let i = 0; i < sunPos.count; i++) {
-    const y = sunPos.getY(i);
-    const t = Math.max(0, Math.min(1, (y + 6) / 12));
-    if (t > 0.5) { sunColors.push(1, 0.6, 0); }      // orange
-    else if (t > 0.3) { sunColors.push(1, 0, 1); }    // magenta
-    else { sunColors.push(0.4, 0, 0.8); }             // purple
-  }
-  sunGeo.setAttribute('color', new THREE.Float32BufferAttribute(sunColors, 3));
-  const sunMat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.18, side: THREE.DoubleSide });
-  const sun = new THREE.Mesh(sunGeo, sunMat);
-  sun.position.set(0, 2, -25);
-  sun.rotation.x = 0;
-  scene.add(sun);
+        <div class="cert-block">
+          <div class="cert-label"><span class="label-text">COMPETITIONS · MILESTONES</span><div class="label-line"></div></div>
+          <div class="cert-items">
+            <div class="cert-item"><span class="cert-name">SLIOT'23 IoT Challenge — 2nd Runners-Up (2024), autonomous navigation, LoRa maritime tracker</span><span class="cert-issuer">ACHIEVEMENT</span></div>
+            <div class="cert-item"><span class="cert-name">Hackathon, Java Institute — 1st Round Winner (2023), social gathering app with real-time mapping</span><span class="cert-issuer">ACHIEVEMENT</span></div>
+            <div class="cert-item"><span class="cert-name">ROBO-GAMES, University of Moratuwa — Competed (2025), custom battlebot</span><span class="cert-issuer">ACHIEVEMENT</span></div>
+            <a href="https://certificates.cs50.io/262b63ef-8f23-4e47-a650-985c53bcaf22.pdf?size=letter" class="cert-item" target="_blank" rel="noopener"><span class="cert-name">CS50x: Introduction to Computer Science (2025, Verified)</span><span class="cert-issuer">HARVARD · EDX</span><span class="cert-link">VIEW →</span></a>
+            <div class="cert-item"><span class="cert-name">BSc Software Engineering — Undergraduate Degree, Awarded</span><span class="cert-issuer">BCU · UK</span></div>
+          </div>
+        </div>
 
-  // ── SCAN LINES ON SUN ──
-  const scanLinesMat = new THREE.LineBasicMaterial({ color: 0x090014, transparent: true, opacity: 0.4 });
-  for (let y = -6; y <= 6; y += 0.4) {
-    const scanGeo = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-6, y, 0.01),
-      new THREE.Vector3(6, y, 0.01)
-    ]);
-    const scanLine = new THREE.Line(scanGeo, scanLinesMat);
-    scanLine.position.copy(sun.position);
-    scene.add(scanLine);
-  }
+        <div class="achievements-block">
+          <div class="achievement-label"><span class="label-text">MILESTONES</span><div class="label-line"></div></div>
+          <div class="achievement-items">
+            <div class="achievement-item"><div class="achievement-marker"></div><div class="achievement-content"><span class="achievement-title">President — Leo Club of Colombo Grand Circle</span><span class="achievement-sub">Organized 5+ tech &amp; educational events impacting 500+ students</span></div></div>
+            <div class="achievement-item"><div class="achievement-marker"></div><div class="achievement-content"><span class="achievement-title">Founder — AURON LABS (2024—Present)</span><span class="achievement-sub">Automation and embedded solutions startup</span></div></div>
+            <div class="achievement-item"><div class="achievement-marker"></div><div class="achievement-content"><span class="achievement-title">10+ Projects shipped · Upwork-verified</span><span class="achievement-sub">Embedded IoT systems to full-stack web platforms</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="texture-strip" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=60&auto=format&fit=crop" alt="" loading="lazy" />
+      </div>
+      <div class="interlude-statement"><p>“Build. Observe. Iterate.”</p></div>
+    </section>
 
-  // ── RESIZE ──
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+    <!-- ═══ 05 CONTACT ═══ -->
+    <section class="section-contact" id="contact" aria-labelledby="contact-heading">
+      <div class="section-number contact-number" aria-hidden="true">05</div>
+      <div class="contact-container">
+        <div class="contact-question">
+          <h2 id="contact-heading" class="contact-heading">What should we<br/>build next?</h2>
+          <p class="contact-sub">THE SYSTEM REACHES EQUILIBRIUM — READY FOR A NEW CYCLE.</p>
+        </div>
+        <div class="contact-terminal" aria-label="Contact details">
+          <div class="terminal-row"><span class="t-prompt">$</span><span class="t-key">whoami</span><span class="t-val">Sandeepa Pethangoda</span></div>
+          <div class="terminal-row"><span class="t-prompt">$</span><span class="t-key">email</span><a class="t-val t-link" href="mailto:petztechlk@gmail.com">petztechlk@gmail.com</a></div>
+          <div class="terminal-row"><span class="t-prompt">$</span><span class="t-key">phone</span><a class="t-val t-link" href="tel:+94762754993">+94 76 275 4993</a></div>
+          <div class="terminal-row"><span class="t-prompt">$</span><span class="t-key">location</span><span class="t-val">Moratuwa, Sri Lanka 10400</span></div>
+          <div class="terminal-row"><span class="t-prompt">$</span><span class="t-key">status</span><span class="t-val t-open">OPEN TO WORK ▮</span></div>
+        </div>
+        <div class="contact-links" role="list">
+          <a href="https://github.com/SandeepaPethangoda" class="contact-link" target="_blank" rel="noopener" role="listitem"><div class="contact-link-inner"><span class="contact-link-label">GITHUB</span><span class="contact-link-handle">SandeepaPethangoda</span></div><span class="contact-link-arrow">→</span></a>
+          <a href="https://www.linkedin.com/in/SandeepaPethangoda" class="contact-link" target="_blank" rel="noopener" role="listitem"><div class="contact-link-inner"><span class="contact-link-label">LINKEDIN</span><span class="contact-link-handle">SandeepaPethangoda</span></div><span class="contact-link-arrow">→</span></a>
+          <a href="https://www.youtube.com/@petztech" class="contact-link" target="_blank" rel="noopener" role="listitem"><div class="contact-link-inner"><span class="contact-link-label">YOUTUBE</span><span class="contact-link-handle">@petztech</span></div><span class="contact-link-arrow">→</span></a>
+          <a href="mailto:petztechlk@gmail.com" class="contact-link" role="listitem"><div class="contact-link-inner"><span class="contact-link-label">EMAIL</span><span class="contact-link-handle">petztechlk@gmail.com</span></div><span class="contact-link-arrow">→</span></a>
+        </div>
+        <div class="contact-canvas-wrap" aria-hidden="true"><canvas id="contactCanvas"></canvas></div>
+        <div class="contact-footer">
+          <span class="footer-name">SANDEEPA PETHANGODA</span><span class="footer-sep">·</span>
+          <span class="footer-sub">COLOMBO, SRI LANKA</span><span class="footer-sep">·</span>
+          <span class="footer-copy">SYSTEM CYCLE COMPLETE</span>
+        </div>
+      </div>
+    </section>
 
-  // ── MOUSE PARALLAX ──
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
+  </main>
 
-  // ── SCROLL ──
-  let scrollY = 0;
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+  <div class="cursor" id="cursor" aria-hidden="true"><div class="cursor-ring"></div><div class="cursor-dot"></div></div>
 
-  // ── ANIMATE ──
-  const clock = new THREE.Clock();
-  function animate() {
-    requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
-
-    // Grid scroll illusion
-    grid.position.z = (t * 2) % SEG;
-
-    // Camera drift
-    camera.position.x = mouseX * 1.5;
-    camera.position.y = 4 - mouseY * 0.8 - scrollY * 0.002;
-    camera.lookAt(0, 0, 0);
-
-    // Shapes
-    torus.rotation.x = t * 0.3;
-    torus.rotation.y = t * 0.2;
-    ico.rotation.x = t * 0.15;
-    ico.rotation.z = t * 0.2;
-
-    // Particle drift
-    const pp = pGeo.attributes.position.array;
-    for (let i = 0; i < particleCount; i++) {
-      pp[i*3+1] += 0.005;
-      if (pp[i*3+1] > 15) pp[i*3+1] = -15;
-    }
-    pGeo.attributes.position.needsUpdate = true;
-
-    // Pulse opacity
-    gridMat.opacity = 0.3 + Math.sin(t * 0.5) * 0.1;
-    pMat.opacity = 0.6 + Math.sin(t * 0.8) * 0.2;
-
-    renderer.render(scene, camera);
-  }
-  animate();
-})();
-
-// ─────────────── CURSOR ───────────────
-const cursor = document.getElementById('cursor');
-const cursorDot = document.getElementById('cursor-dot');
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  cursorDot.style.left = e.clientX + 'px';
-  cursorDot.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .project-card, .skill-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.width = '30px'; cursor.style.height = '30px'; cursor.style.borderColor = 'var(--magenta)'; });
-  el.addEventListener('mouseleave', () => { cursor.style.width = '16px'; cursor.style.height = '16px'; cursor.style.borderColor = 'var(--cyan)'; });
-});
-
-// ─────────────── NAV HAMBURGER ───────────────
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('nav-links').classList.toggle('open');
-});
-
-// ─────────────── SCROLL REVEAL ───────────────
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      const delay = entry.target.closest('.skills-grid, .projects-grid, .about-stats') ?
-        Array.from(entry.target.parentElement.children).indexOf(entry.target) * 80 : 0;
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-reveals.forEach(el => revealObserver.observe(el));
-
-// ─────────────── SKILL BARS ───────────────
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const fill = entry.target.querySelector('.skill-bar-fill');
-      if (fill) { setTimeout(() => { fill.style.width = fill.dataset.pct + '%'; }, 300); }
-      barObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.skill-card').forEach(el => barObserver.observe(el));
-
-// ─────────────── CONTACT FORM ───────────────
-(function() {
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: 'h7m4VKXrHjF6c3QxW', blockHeadless: true, limitRate: { id: 'app', throttle: 10000 } });
-  }
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.querySelector('span').textContent = '⌛ TRANSMITTING...';
-    const params = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value,
-    };
-    if (typeof emailjs !== 'undefined') {
-      emailjs.send('service_jp2wpac', 'template_lg4ewn6', params)
-        .then(() => { btn.querySelector('span').textContent = '✓ MESSAGE SENT'; this.reset(); setTimeout(() => btn.querySelector('span').textContent = '⌐ TRANSMIT MESSAGE ¬', 3000); })
-        .catch(() => { btn.querySelector('span').textContent = '✗ FAILED — RETRY'; setTimeout(() => btn.querySelector('span').textContent = '⌐ TRANSMIT MESSAGE ¬', 3000); });
-    } else {
-      setTimeout(() => { btn.querySelector('span').textContent = '✓ MESSAGE SENT'; this.reset(); setTimeout(() => btn.querySelector('span').textContent = '⌐ TRANSMIT MESSAGE ¬', 3000); }, 800);
-    }
-  });
-})();
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
