@@ -990,6 +990,10 @@ body.cursor-hover .cursor-ring {
   transition: transform 0.5s var(--ease-out-cubic), filter 0.4s;
   background: var(--bg-surface);
 }
+.project-photo--ui {
+  object-fit: contain;
+  background: #0f1a1f;
+}
 .project-artifact:hover .project-photo {
   transform: scale(1.045);
   filter: sepia(0) contrast(1.08);
@@ -1119,6 +1123,11 @@ body.cursor-hover .cursor-ring {
 .project-artifact:hover .tech-tag:nth-child(3) { transition-delay: 0.06s; }
 .project-artifact:hover .tech-tag:nth-child(4) { transition-delay: 0.09s; }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
 .project-link {
   font-family: var(--font-mono);
   font-size: 0.7rem;
